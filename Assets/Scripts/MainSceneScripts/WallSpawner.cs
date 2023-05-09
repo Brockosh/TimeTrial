@@ -20,8 +20,8 @@ public class WallSpawner : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.instance.CollisionEvent.OnPlayerPlaneCollisionDifficultMovementPlane += StoreWallPositions;
-        GameManager.instance.CollisionEvent.OnPlayerPlaneCollisionDifficultMovementPlane += SpawnWalls;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlane += StoreWallPositions;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlane += SpawnWalls;
     }
 
     //private void OnTriggerEnter(Collider other)

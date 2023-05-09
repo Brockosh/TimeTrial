@@ -73,7 +73,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.CollisionEvent.OnPlayerPlaneCollisionEnemySpawningPlane += CompleteSpawningProcess;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlane += CompleteSpawningProcess;
 
         //CreatePositionsForEnemiesToSpawnIn();
         //SpawnEnemies();

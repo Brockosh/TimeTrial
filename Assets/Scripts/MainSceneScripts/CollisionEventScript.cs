@@ -5,23 +5,32 @@ using UnityEngine;
 
 public class CollisionEventScript : MonoBehaviour
 {
-    public event Action OnPlayerPlaneCollisionDifficultMovementPlane;
+    public event Action OnPlayerCollisionDifficultMovementPlane;
+    public event Action OnPlayerCollisionDifficultMovementPlaneExit;
     public event Action OnPlayerPlaneCollisionRedZone;
     public event Action OnPlayerPlaneCollisionOrangeZone;
     public event Action OnPlayerPlaneCollisionYellowZone;
     public event Action OnPlayerPlaneCollisionGreenZone;
 
-    public event Action OnPlayerPlaneCollisionMazeEntrance;
-    public event Action OnPlayerPlaneCollisionMazeExit;
+    public event Action OnPlayerCollisionMazeEntrance;
+    public event Action OnPlayerCollisionMazeExit;
 
-    public event Action OnPlayerPlaneCollisionEnemySpawningPlane;
+    public event Action OnPlayerCollisionEnemySpawningPlane;
+    public event Action OnPlayerCollisionEnemySpawningPlaneExit;
+
+
     public event Action OnPlayerCollisionEnemy;
 
     public event Action OnPlayerPlaneCollisionSceneChanger;
 
     public void CallPlayerPlaneCollisionDifficultMovementPlane()
     {
-        OnPlayerPlaneCollisionDifficultMovementPlane?.Invoke();
+        OnPlayerCollisionDifficultMovementPlane?.Invoke();
+    }
+
+    public void CallPlayerPlaneCollisionDifficultMovementPlaneExit()
+    {
+        OnPlayerCollisionDifficultMovementPlaneExit?.Invoke();
     }
 
     public void CallPlayerCollisionRedZone()
@@ -46,12 +55,12 @@ public class CollisionEventScript : MonoBehaviour
 
     public void CallPlayerCollisionMazeEntrance()
     {
-        OnPlayerPlaneCollisionMazeEntrance?.Invoke();
+        OnPlayerCollisionMazeEntrance?.Invoke();
     }
 
     public void CallPlayerCollisionMazeExit()
     {
-        OnPlayerPlaneCollisionMazeExit?.Invoke();
+        OnPlayerCollisionMazeExit?.Invoke();
     }
 
     public void CallPlayerCollisionSceneChanger()
@@ -61,7 +70,12 @@ public class CollisionEventScript : MonoBehaviour
 
     public void CallPlayerCollisionEnemySpawningPlane()
     {
-        OnPlayerPlaneCollisionEnemySpawningPlane?.Invoke();
+        OnPlayerCollisionEnemySpawningPlane?.Invoke();
+    }
+
+    public void CallPlayerCollisionEnemySpawningPlaneExit()
+    {
+        OnPlayerCollisionEnemySpawningPlaneExit?.Invoke();
     }
 
     public void CallPlayerCollisionEnemy()

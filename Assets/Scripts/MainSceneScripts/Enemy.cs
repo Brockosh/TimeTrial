@@ -6,13 +6,13 @@ public class Enemy : MonoBehaviour
 {
 
     private GameObject player;
-
     private Vector3 playerPosition;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemy += DestroyEnemy;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlaneExit += DestroyEnemyWithDelay;
     }
 
     private void Update()
@@ -35,8 +35,14 @@ public class Enemy : MonoBehaviour
 
     private void DestroyEnemy()
     {
-        
         Destroy(gameObject);
+        Debug.Log("Enemy Destroyed");
+    }
+
+    private void DestroyEnemyWithDelay()
+    {
+        Destroy(gameObject, 2);
+        Debug.Log("Enemy Destroyed");
     }
 
     private void OnDestroy()

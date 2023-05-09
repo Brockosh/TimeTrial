@@ -14,8 +14,8 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.CollisionEvent.OnPlayerPlaneCollisionMazeEntrance += ChangeOffsetToFirstPerson;
-        GameManager.instance.CollisionEvent.OnPlayerPlaneCollisionMazeExit += SetCameraPositionToThirdPerson;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += ChangeOffsetToFirstPerson;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += SetCameraPositionToThirdPerson;
         SetCameraPositionToThirdPerson();
     }
 

@@ -26,7 +26,6 @@ public class MazeBlock : MonoBehaviour
         UpdateState();
     }
 
-
     public void ChangeColourToRed()
     {
         currentState = ColorState.Red;
@@ -46,6 +45,7 @@ public class MazeBlock : MonoBehaviour
     {
         currentState = ColorState.Green;
     }
+
     public IEnumerator ChangeColors(Color a, Color b, ColorState c)
     {
         while (currentState == c)
@@ -88,47 +88,6 @@ public class MazeBlock : MonoBehaviour
             lastState = currentState;
         }
     }
-
-
-
-
-
-
-    //public void UpdateState()
-    //{
-    //    if (lastState != currentState)
-    //    {
-    //        switch (currentState)
-    //        {
-    //            case ColorState.Red:
-    //                {
-    //                    StartCoroutine(ChangeColors(Color.red, new Color(0.3f, 0, 0), currentState));
-    //                }
-    //                break;
-    //            case ColorState.Green:
-    //                {
-    //                    StartCoroutine(ChangeColors(Color.green, new Color(0, 0.3f, 0), currentState));
-    //                }
-    //                break;
-    //            case ColorState.Orange:
-    //                {
-    //                    StartCoroutine(ChangeColors(new Color(1.0f, 0.5f, 0.0f, 1.0f), new Color(1.0f, 0.8f, 0.0f, 1.0f), currentState));
-    //                }
-    //                break;
-    //            case ColorState.Yellow:
-    //                {
-    //                    StartCoroutine(ChangeColors(Color.yellow, new Color(0, 0, 0.3f), currentState));
-    //                }
-    //                break;
-    //            default:
-    //                //Broken
-    //                break;
-    //        }
-    //        lastState = currentState;
-    //    }
-
-
-    //}
 }
 
 

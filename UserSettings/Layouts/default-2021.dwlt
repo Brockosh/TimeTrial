@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 998
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 64
+  controlID: 17
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 52
+  controlID: 25
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 53
+  controlID: 26
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -349,22 +349,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/ThirdPartyAssets/Stylized Brick Materials/Materials
+    - Assets/Scripts/MathsSceneScripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
-  m_StartGridSize: 45
+  m_StartGridSize: 16
   m_LastFolders:
-  - Assets/ThirdPartyAssets/Stylized Brick Materials/Materials
-  m_LastFoldersGridSize: 45
+  - Assets/Scripts/MathsSceneScripts
+  m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\User\Documents\GitHub\TimeTrial
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 187}
-    m_SelectedIDs: 702d0100
-    m_LastClickedID: 77168
-    m_ExpandedIDs: 000000005ea60000ea2b0100362c0100682d01006c2d010034bb02003abb020000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 32fa0000
+    m_LastClickedID: 64050
+    m_ExpandedIDs: 0000000066a6000068a600006ea6000070a6000072a60000b0a6000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -392,7 +392,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005ea60000
+    m_ExpandedIDs: 0000000066a6000068a600006aa600006ca600006ea6000070a6000072a60000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -445,7 +445,7 @@ MonoBehaviour:
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 45
+    m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
 --- !u!114 &14
@@ -520,23 +520,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: b45a0000
-      m_LastClickedID: 23220
-      m_ExpandedIDs: 12bcffff36fbfffffa5a0000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 0abcffff0cbcffff62bcffff36fbfffffa5a0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Cube
-        m_OriginalName: Cube
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -17310
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 4}
       m_SearchString: 
@@ -804,9 +804,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.2998927, y: 12.971743, z: 154.78459}
+    m_Target: {x: -10.652713, y: -1.6698136, z: 156.03178}
     speed: 2
-    m_Value: {x: -1.2998927, y: 12.971743, z: 154.78459}
+    m_Value: {x: -10.652713, y: -1.6698136, z: 156.03178}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -853,13 +853,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.08268349, y: 0.02898999, z: -0.0024328218, w: -0.99617255}
+    m_Target: {x: -0.10113354, y: 0.21666384, z: -0.02260004, w: -0.97075224}
     speed: 2
-    m_Value: {x: -0.081187405, y: 0.028992988, z: -0.0023892794, w: -0.9962742}
+    m_Value: {x: -0.10113143, y: 0.21665932, z: -0.022599569, w: -0.970732}
   m_Size:
-    m_Target: 7.0195484
+    m_Target: 51.954247
     speed: 2
-    m_Value: 7.3503127
+    m_Value: 51.954247
   m_Ortho:
     m_Target: 0
     speed: 2

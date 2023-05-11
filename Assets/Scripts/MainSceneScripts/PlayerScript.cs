@@ -23,9 +23,6 @@ public class PlayerScript : MonoBehaviour
     private GameObject enemySpawningPlane;
     private Vector3 enemySpawningPlaneOffset;
 
-   
-
-    
 
     private void Start()
     {

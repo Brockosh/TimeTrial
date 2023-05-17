@@ -19,6 +19,9 @@ public class CollisionEventScript : MonoBehaviour
     public event Action OnPlayerCollisionEnemySpawningPlaneExit;
 
 
+    public event Action OnPlayerCollisionMathsLevel;
+
+
     public event Action OnPlayerCollisionEnemy;
 
     public event Action OnPlayerPlaneCollisionSceneChanger;
@@ -81,6 +84,11 @@ public class CollisionEventScript : MonoBehaviour
     public void CallPlayerCollisionEnemy()
     {
         OnPlayerCollisionEnemy?.Invoke();
+    }
+
+    public void CallPlayerPlaneCollisionMathsLevel()
+    {
+        OnPlayerCollisionMathsLevel?.Invoke();
     }
 
 }

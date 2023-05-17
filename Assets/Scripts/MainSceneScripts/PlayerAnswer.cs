@@ -20,6 +20,9 @@ public class PlayerAnswer : MonoBehaviour
 
     private void Start()
     {
+        GameManager.instance.CollisionEvent.OnPlayerCollisionMathsLevel += ActivatePlayerTextEntry;
+
+
         GameManager.instance.mathEvents.OnPlayerCorrectAnswer += ResetPlayerTextEntry;
         GameManager.instance.mathEvents.OnPlayerIncorrectAnswer += ResetPlayerTextEntry;
         GameManager.instance.mathEvents.OnPlayerCorrectAnswer += ActivatePlayerTextEntry;
@@ -50,6 +53,7 @@ public class PlayerAnswer : MonoBehaviour
     public void SelectPlayerTextEntry()
     {
         playerAnswer.Select();
+        Debug.Log("Text entry selected");
     }
 
     private char ValidateNumberInput(char inputChar)

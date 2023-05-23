@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class PlayerScript : MonoBehaviour
 {
     Rigidbody rb;
+    Animator myAnimator;
     float xInput;
     float zInput;
     float xVelocity;
@@ -16,6 +17,7 @@ public class PlayerScript : MonoBehaviour
     public float moveSpeed;
     private Vector3 moveDirection;
     public float jumpForce = 10f;
+    public float rotationSpeed = 10f;
     private bool normalMovement;
     private bool difficultMovement;
     private bool invertedMovement;
@@ -27,6 +29,7 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        myAnimator = GetComponent<Animator>();
         enemySpawningPlane = GameObject.FindGameObjectWithTag("EnemySpawningPlane");
         SetEnemySpawningPlaneOffset();
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemy += MovePlayerToEnemySpawningPlaneOffset;
@@ -35,7 +38,8 @@ public class PlayerScript : MonoBehaviour
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlane += RunEnemySpawningPlaneEntranceOperations;
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlaneExit += RunEnemySpawningPlaneExitOperations;
 
-        normalMovement = true; ; 
+        normalMovement = true; 
+        //SetPlayerWalkForward();
 
         ////GameManager.instance.CollisionEvent.OnPlayerPlaneCollisionSceneChanger += ShiftPlayerPositionForward;
         ////GameManager.instance.mathEvents.OnPlayerFinishedMathsScene += ReloadScene;
@@ -45,6 +49,7 @@ public class PlayerScript : MonoBehaviour
     private void FixedUpdate()
     {
         BasicPlayerMovement();
+        ControlPlayerAnimations();
         //SetUpPlayerMovement();
         //DifficultPlayerMovement();
         //InvertedPlayerMovement();
@@ -67,9 +72,7 @@ public class PlayerScript : MonoBehaviour
         {
             SetDifficultPlayerMoveDirection();
         }
-        //Vector3 moveDirection = new Vector3(xInput, 0, zInput);
         MovePlayer();
-       // transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
     }
 
     private void SetPlayerMoveDirection()
@@ -82,22 +85,6 @@ public class PlayerScript : MonoBehaviour
         moveDirection = new Vector3(-xInput, 0, -zInput);
     }
 
-    //private void SetDifficultPlayerMoveDirection()
-    //{
-
-
-    //    if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
-    //    {
-    //        xInput = -xInput;
-    //    }
-
-    //    if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-    //    {
-    //        zInput = -zInput;
-    //    }
-
-    //    moveDirection = new Vector3(xInput, 0, zInput);
-    //}
 
     private void SetDifficultPlayerMoveDirection()
     {
@@ -118,11 +105,24 @@ public class PlayerScript : MonoBehaviour
         moveDirection = new Vector3(xInput, 0, zInput);
     }
 
+    //private void MovePlayer()
+    //{
+    //    transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
+
+    //}
+
     private void MovePlayer()
     {
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
+        if (moveDirection != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        }
 
+        transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
     }
+
+
 
     private void GetPlayerInputAxis()
     {
@@ -130,109 +130,18 @@ public class PlayerScript : MonoBehaviour
         zInput = Input.GetAxisRaw("Vertical");
     }
 
-    //private void SetPlayerVelocity()
-    //{
-    //    rb.velocity = new Vector3(xVelocity, rb.velocity.y, 0) + (transform.forward * zVelocity);
-    //}
-    
+    private void ControlPlayerAnimations()
+    {
+        if (moveDirection != Vector3.zero)
+        {
+            myAnimator.SetBool("isWalking", true);
+        }
+        else
+        {
 
-    //private void AssignXAndZVelocities()
-    //{
-    //    //xVelocity = xInput * moveSpeed;
-    //    Debug.Log(xInput);
-    //    transform.Rotate(transform.up * moveSpeed * xInput);
-    //    zVelocity = zInput * moveSpeed;
-    //}
-
-    //private void DifficultPlayerMovement()
-    //{
-    //    if (difficultMovement) 
-    //        { 
-    //        if (Input.GetKey(KeyCode.W))
-    //        {
-    //            rb.velocity = Vector3.back * moveSpeed;
-    //        }
-    //        else if (Input.GetKey(KeyCode.A))
-    //        {
-    //            rb.velocity = Vector3.forward * moveSpeed;
-    //        }
-    //        else if (Input.GetKey(KeyCode.S))
-    //        {
-    //            rb.velocity = Vector3.right * moveSpeed;
-    //        }
-    //        else if (Input.GetKey(KeyCode.D))
-    //        {
-    //            rb.velocity = Vector3.left * moveSpeed;
-    //        }
-    //        else { rb.velocity = Vector3.zero; }
-    //    }
-    //}
-
-    //private void InvertedPlayerMovement()
-    //{
-    //    if (invertedMovement)
-    //    {
-    //        if (Input.GetKey(KeyCode.W))
-    //        {
-    //            rb.velocity = Vector3.back * moveSpeed;
-    //        }
-    //        else if (Input.GetKey(KeyCode.A))
-    //        {
-    //            rb.velocity = Vector3.right * moveSpeed;
-    //        }
-    //        else if (Input.GetKey(KeyCode.S))
-    //        {
-    //            rb.velocity = Vector3.forward * moveSpeed;
-    //        }
-    //        else if (Input.GetKey(KeyCode.D))
-    //        {
-    //            rb.velocity = Vector3.left * moveSpeed;
-    //        }
-    //        else { rb.velocity = Vector3.zero; }
-    //    }
-    //}
-
-
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("DifficultMovementPlane"))
-    //    {
-    //        Invoke("DeactivateNormalMovement", .25f);
-    //        Invoke("ActivateDifficultMovement", .25f);;
-    //    }
-    //    else if (collision.gameObject.CompareTag("EnemySpawningPlane"))
-    //    {
-    //        Invoke("DeactivateNormalMovement", .25f);
-    //        Invoke("ActivateInvertedMovement", .25f); ;
-    //    }
-    //}
-
-  
-
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("DifficultMovementPlane"))
-    //    {
-    //        difficultMovement = false;
-    //        ActivateNormalMovement();
-    //    }
-    //    else if (collision.gameObject.CompareTag("EnemySpawningPlane"))
-    //    {
-    //        invertedMovement = false;
-    //        ActivateNormalMovement();
-    //    }
-    //}
-
-    //private void SetUpPlayerMovement()
-    //{
-    //    if (normalMovement)
-    //    {
-    //        GetPlayerInputAxis();
-    //        AssignXAndZVelocities();
-    //        SetPlayerVelocity();
-    //    }
-    //}
+            myAnimator.SetBool("isWalking", false);
+        }
+    }
 
     private void RunDifficultMovementPlaneEntranceOperations()
     {

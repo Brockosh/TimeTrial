@@ -15,6 +15,8 @@ public class WallSpawner : MonoBehaviour
 
     public int numWalls = 10;
 
+    public bool wallsSpawned;
+
     private List<Vector3> wallPositions = new List<Vector3>();
 
 
@@ -22,6 +24,7 @@ public class WallSpawner : MonoBehaviour
     {
         GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlane += StoreWallPositions;
         GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlane += SpawnWalls;
+        wallsSpawned = false;
     }
 
     //private void OnTriggerEnter(Collider other)
@@ -72,9 +75,13 @@ public class WallSpawner : MonoBehaviour
 
     private void SpawnWalls()
     {
-        foreach (Vector3 position in wallPositions)
+        if (!wallsSpawned)
         {
-            SpawnWall(position);
+            foreach (Vector3 position in wallPositions)
+            {
+                SpawnWall(position);
+                wallsSpawned = true;
+            }
         }
     }
 
@@ -85,10 +92,13 @@ public class WallSpawner : MonoBehaviour
 
     private void StoreWallPositions()
     {
-        for (int i = 0; i < numWalls; i++)
+        if (!wallsSpawned)
         {
-            Vector3 spawnPosition = GenerateValidWallPosition();
-            wallPositions.Add(spawnPosition);
+            for (int i = 0; i < numWalls; i++)
+            {
+                Vector3 spawnPosition = GenerateValidWallPosition();
+                wallPositions.Add(spawnPosition);
+            }
         }
     }
 

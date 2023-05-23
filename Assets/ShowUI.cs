@@ -8,5 +8,10 @@ public class ShowUI : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         UI.SetActive(true);
+        //UI.alpha = 1.0f;
+        //UI.interactable = true;
+        //UI.blocksRaycasts = true;
+        GameManager.instance.CollisionEvent.CallPlayerCollisionMathsLevel();
+
     }
 }

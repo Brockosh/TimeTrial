@@ -25,8 +25,9 @@ public class Calculator : MonoBehaviour
 
     private void Start()
     {
+        GameManager.instance.CollisionEvent.OnPlayerCollisionMathsLevel += RunMathsFunctions;
         //SelectPlayerTextEntry();
-        RunMathsFunctions();
+        //RunMathsFunctions();
     }
 
     private void Update()

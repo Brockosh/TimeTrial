@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class EnemySpawningPlane : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        GameManager.instance.CollisionEvent.CallPlayerCollisionEnemySpawningPlane();
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             GameManager.instance.CollisionEvent.CallPlayerCollisionEnemySpawningPlane();
         }

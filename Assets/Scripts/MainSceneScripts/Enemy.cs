@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
         transform.Rotate(0, 180, 0);
         player = GameObject.FindGameObjectWithTag("Player");
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemy += DestroyEnemy;
-        GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlaneExit += DestroyEnemyWithDelay;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlaneExit += DestroyEnemy;
     }
 
     private void Update()

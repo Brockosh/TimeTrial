@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CollisionEventScript : MonoBehaviour
+
 {
+    
     public event Action OnPlayerCollisionDifficultMovementPlane;
     public event Action OnPlayerCollisionDifficultMovementPlaneExit;
     public event Action OnPlayerPlaneCollisionRedZone;
@@ -86,9 +88,10 @@ public class CollisionEventScript : MonoBehaviour
         OnPlayerCollisionEnemy?.Invoke();
     }
 
-    public void CallPlayerPlaneCollisionMathsLevel()
+    public void CallPlayerCollisionMathsLevel()
     {
         OnPlayerCollisionMathsLevel?.Invoke();
+        Debug.Log("Called Collision Maths Level");
     }
 
 }

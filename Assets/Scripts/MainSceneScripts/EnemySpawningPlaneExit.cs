@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class EnemySpawningPlaneExit : MonoBehaviour
 {
+
+    //MeshCollider myMeshCollider;
+
+    //private void Start()
+    //{
+    //    myMeshCollider = GetComponent<MeshCollider>();
+    //   // GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlaneExit += DisableMeshCollider;
+    //}
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -12,4 +20,14 @@ public class EnemySpawningPlaneExit : MonoBehaviour
             Debug.Log("CALLED");
         }
     }
+
+    //private void DisableMeshCollider()
+    //{
+    //    myMeshCollider.enabled = false;
+    //}
+
+    //private void Destroy()
+    //{
+    //    Destroy(gameObject);
+    //}
 }

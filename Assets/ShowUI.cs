@@ -5,6 +5,11 @@ using UnityEngine;
 public class ShowUI : MonoBehaviour
 {
     [SerializeField] GameObject UI;
+
+    private void Start()
+    {
+        GameManager.instance.mathEvents.OnPlayerFinishedMathsScene += DisableUI;
+    }
     private void OnTriggerEnter(Collider other)
     {
         UI.SetActive(true);
@@ -13,5 +18,10 @@ public class ShowUI : MonoBehaviour
         //UI.blocksRaycasts = true;
         GameManager.instance.CollisionEvent.CallPlayerCollisionMathsLevel();
 
+    }
+
+    private void DisableUI()
+    {
+        UI.SetActive(false);
     }
 }

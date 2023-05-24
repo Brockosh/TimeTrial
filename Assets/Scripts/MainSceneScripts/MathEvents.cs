@@ -7,7 +7,7 @@ public class MathEvents : MonoBehaviour
 {
     public event Action OnPlayerCorrectAnswer;
     public event Action OnPlayerIncorrectAnswer;
-    //public event Action OnPlayerFinishedMathsScene;
+    public event Action OnPlayerFinishedMathsScene;
 
     public void CallPlayerCorrectAnswer()
     {
@@ -19,8 +19,8 @@ public class MathEvents : MonoBehaviour
         OnPlayerIncorrectAnswer?.Invoke();
     }
 
-    //public void CallPlayerFinishedMathsScene()
-    //{
-    //    OnPlayerFinishedMathsScene?.Invoke();
-    //}
+    public void CallPlayerFinishedMathsScene()
+    {
+        OnPlayerFinishedMathsScene?.Invoke();
+    }
 }

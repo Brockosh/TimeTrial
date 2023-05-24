@@ -13,6 +13,9 @@ public class Calculator : MonoBehaviour
     private int correctAnswer;
     private int playerAnswerAsInt = 0;
 
+    private const int ANSWERS_REQUIRED = 5;
+    private int correctAnswerCount;
+
     private static readonly Random RandomNumberGenerator = new Random();
 
     //private void Awake()
@@ -26,6 +29,7 @@ public class Calculator : MonoBehaviour
     private void Start()
     {
         GameManager.instance.CollisionEvent.OnPlayerCollisionMathsLevel += RunMathsFunctions;
+        GameManager.instance.mathEvents.OnPlayerCorrectAnswer += IncrementCorrectAnswerCount;
         //SelectPlayerTextEntry();
         //RunMathsFunctions();
     }
@@ -36,6 +40,10 @@ public class Calculator : MonoBehaviour
         {
             playerAnswerAsInt = ConvertPlayerAnswerToInt(playerAnswer, playerAnswerAsInt);
             CheckIfAnswerIsCorrect(playerAnswerAsInt, correctAnswer);
+        }
+        if (correctAnswerCount == ANSWERS_REQUIRED) 
+        {
+            GameManager.instance.mathEvents.CallPlayerFinishedMathsScene();
         }
 
     }
@@ -120,7 +128,10 @@ public class Calculator : MonoBehaviour
     //}
 
  
-
+    private void IncrementCorrectAnswerCount()
+    {
+        correctAnswerCount++;
+    }
 
 
 }

@@ -28,6 +28,6 @@ public class DoorSelector : MonoBehaviour
 
     private void MakeDoorDestroyable(int randomNumber, Door[] doors)
     {
-        doors[randomNumber].destroyable = true;
+        doors[randomNumber].openable = true;
     }
 }

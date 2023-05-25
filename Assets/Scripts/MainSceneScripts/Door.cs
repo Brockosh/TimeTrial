@@ -4,20 +4,35 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public bool destroyable;
- 
+    public bool openable;
+    public bool hasBeenOpened;
+    public Transform myTransform;
+
+    private void Start()
+    {
+        myTransform = transform;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (destroyable)
+        if (openable && !hasBeenOpened)
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                transform.Rotate(0f, 90f, 0f);
-                
+                OpenDoor();
+                hasBeenOpened = true;
                 //Destroy(gameObject);
                 Debug.Log("Collision has occured (Door)");
             }
         }
+    }
+
+    private void OpenDoor()
+    {
+        transform.Rotate(0f, 90f, 0f);
+        myTransform.Translate(-myTransform.right);
+        myTransform.Translate(-myTransform.forward);
+
     }
 
 }

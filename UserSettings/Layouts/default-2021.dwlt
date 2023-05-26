@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 998
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Console
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 100
+  controlID: 56
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 49
+  controlID: 57
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 50
+  controlID: 58
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -372,7 +372,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 23408
+  m_LastSelectedObjectID: -1778
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -414,22 +414,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/ThirdPartyAssets/GraveyardProps/ParticleFX
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/ThirdPartyAssets/GraveyardProps/ParticleFX
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\User\Documents\GitHub\TimeTrial
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 104}
-    m_SelectedIDs: e2370100
-    m_LastClickedID: 79842
-    m_ExpandedIDs: 0000000020ae000024ae000026ae000028ae00002aae00002cae00002eae000030ae000032ae000034ae000036ae000038ae00003aae0000e8370100ba140600da140600ce150600d215060000ca9a3b
+    scrollPos: {x: 0, y: 164}
+    m_SelectedIDs: 48f90000
+    m_LastClickedID: 63816
+    m_ExpandedIDs: 0000000076af000078af00007aaf00007caf00007eaf000080af000082af000084af000086af000088af00008aaf00008caf00008eaf000090af000092af000094af000096af000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -457,7 +457,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000020ae000022ae000024ae000026ae000028ae00002aae00002cae00002eae000030ae000032ae000034ae000036ae000038ae00003aae0000
+    m_ExpandedIDs: 0000000076af000078af00007aaf00007caf00007eaf000080af000082af000084af000086af000088af00008aaf00008caf00008eaf000090af000092af000094af000096af0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -482,8 +482,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 24fbffff
-    m_LastClickedInstanceID: -1244
+    m_SelectedInstanceIDs: e25b0000
+    m_LastClickedInstanceID: 23522
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300000000000012860200fc9e0300c29f0300a4ad000092140600
     m_RenameOverlay:
@@ -584,24 +584,24 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 395}
-      m_SelectedIDs: 24fbffff
-      m_LastClickedID: -1244
-      m_ExpandedIDs: 54bbffff36fbffffb05a0000025b0000645c0000705c0000c45c0000
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: bc5b0000
+      m_LastClickedID: 23484
+      m_ExpandedIDs: 9a4effff0ef9ffffdcf9ffff36fbffffa85a0000ca5a00003c5b0000485b00005e5d0000e65d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Fence
-        m_OriginalName: Fence
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -63202
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 4}
       m_SearchString: 
@@ -869,9 +869,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -37.125313, y: -43.188114, z: 57.647255}
+    m_Target: {x: 6.1611066, y: -25.67577, z: 92.38909}
     speed: 2
-    m_Value: {x: -37.125313, y: -43.188114, z: 57.647255}
+    m_Value: {x: 6.1611066, y: -25.67577, z: 92.38909}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -918,13 +918,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.26470748, y: 0.28449315, z: -0.08205988, w: -0.91775304}
+    m_Target: {x: -0.18652718, y: -0.043611605, z: 0.0082663875, w: -0.9814575}
     speed: 2
-    m_Value: {x: -0.26470605, y: 0.28449163, z: -0.08205944, w: -0.9177481}
+    m_Value: {x: -0.18652518, y: -0.043611135, z: 0.008266299, w: -0.9814469}
   m_Size:
-    m_Target: 50.931664
+    m_Target: 46.738876
     speed: 2
-    m_Value: 50.931664
+    m_Value: 46.738876
   m_Ortho:
     m_Target: 0
     speed: 2

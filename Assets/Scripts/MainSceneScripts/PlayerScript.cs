@@ -18,9 +18,14 @@ public class PlayerScript : MonoBehaviour
     private Vector3 moveDirection;
     public float jumpForce = 10f;
     public float rotationSpeed = 10f;
+    public float mouseRotationSpeed = 10f;
+
     private bool normalMovement;
     private bool difficultMovement;
     private bool invertedMovement;
+
+    private bool isInMaze;
+    private float mouseX;
 
     private GameObject enemySpawningPlane;
     private Vector3 enemySpawningPlaneOffset;
@@ -37,6 +42,8 @@ public class PlayerScript : MonoBehaviour
         GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlaneExit += RunDifficultMovementPlaneExitOperations;
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlane += RunEnemySpawningPlaneEntranceOperations;
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlaneExit += RunEnemySpawningPlaneExitOperations;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += ActivateIfInMazeBool;
+
 
         normalMovement = true; 
         //SetPlayerWalkForward();
@@ -77,7 +84,17 @@ public class PlayerScript : MonoBehaviour
 
     private void SetPlayerMoveDirection()
     {
-        moveDirection = new Vector3(xInput, 0, zInput);
+        if (!isInMaze)
+        {
+            moveDirection = new Vector3(xInput, 0, zInput).normalized;
+        }
+        else
+        {
+            Vector3 right = transform.right * xInput;
+            Vector3 forward = transform.forward * zInput;
+
+            moveDirection = (right + forward).normalized;
+        }
     }
 
     private void InvertPlayerMoveDirection()
@@ -113,10 +130,17 @@ public class PlayerScript : MonoBehaviour
 
     private void MovePlayer()
     {
-        if (moveDirection != Vector3.zero)
+        if (!isInMaze)
+        { 
+            if (moveDirection != Vector3.zero)
+            {
+                Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            }
+        }
+        else
         {
-            Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            transform.Rotate(new Vector3(0, mouseX, 0) * Time.deltaTime * mouseRotationSpeed);
         }
 
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
@@ -128,6 +152,8 @@ public class PlayerScript : MonoBehaviour
     {
         xInput = Input.GetAxisRaw("Horizontal");
         zInput = Input.GetAxisRaw("Vertical");
+
+        mouseX = Input.GetAxis("Mouse X");
     }
 
     private void ControlPlayerAnimations()
@@ -206,6 +232,14 @@ public class PlayerScript : MonoBehaviour
         transform.position = enemySpawningPlaneOffset;
     }
   
+    private void ActivateIfInMazeBool()
+    {
+        isInMaze = true;
+
+        //move this to beginning of game
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
 }
 

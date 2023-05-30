@@ -7,6 +7,8 @@ public class CollisionEventScript : MonoBehaviour
 
 {
     
+    public event Action OnPlayerCollisionStartLine;
+    public event Action OnPlayerCollisionFinishLine;
     public event Action OnPlayerCollisionDifficultMovementPlane;
     public event Action OnPlayerCollisionDifficultMovementPlaneExit;
     public event Action OnPlayerPlaneCollisionRedZone;
@@ -92,6 +94,16 @@ public class CollisionEventScript : MonoBehaviour
     {
         OnPlayerCollisionMathsLevel?.Invoke();
         Debug.Log("Called Collision Maths Level");
+    }
+
+    public void CallPlayerCollisionStartLine()
+    {
+        OnPlayerCollisionStartLine?.Invoke();
+    }
+
+    public void CallPlayerCollisionFinishLine()
+    {
+        OnPlayerCollisionFinishLine?.Invoke();
     }
 
 }

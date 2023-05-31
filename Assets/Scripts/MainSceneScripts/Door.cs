@@ -21,6 +21,8 @@ public class Door : MonoBehaviour
             {
                 OpenDoor();
                 hasBeenOpened = true;
+                GameManager.instance.CollisionEvent.CallPlayerCollisionCorrectDoor();
+
                 //Destroy(gameObject);
                 Debug.Log("Collision has occured (Door)");
             }

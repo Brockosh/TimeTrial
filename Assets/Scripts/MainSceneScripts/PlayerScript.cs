@@ -42,7 +42,8 @@ public class PlayerScript : MonoBehaviour
         GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlaneExit += RunDifficultMovementPlaneExitOperations;
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlane += RunEnemySpawningPlaneEntranceOperations;
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlaneExit += RunEnemySpawningPlaneExitOperations;
-        GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += ActivateIfInMazeBool;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += ActivateIsInMazeBool;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += DeactivateIsInMazeBool;
 
 
         normalMovement = true; 
@@ -152,8 +153,9 @@ public class PlayerScript : MonoBehaviour
     {
         xInput = Input.GetAxisRaw("Horizontal");
         zInput = Input.GetAxisRaw("Vertical");
-
+        
         mouseX = Input.GetAxis("Mouse X");
+        
     }
 
     private void ControlPlayerAnimations()
@@ -232,13 +234,18 @@ public class PlayerScript : MonoBehaviour
         transform.position = enemySpawningPlaneOffset;
     }
   
-    private void ActivateIfInMazeBool()
+    private void ActivateIsInMazeBool()
     {
         isInMaze = true;
 
         //move this to beginning of game
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void DeactivateIsInMazeBool()
+    {
+        isInMaze = false;
     }
 
 }

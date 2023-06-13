@@ -25,6 +25,7 @@ public class PlayerScript : MonoBehaviour
     private bool invertedMovement;
 
     private bool isInMaze;
+    private bool isInMathsLevel;
     private float mouseX;
 
     private GameObject enemySpawningPlane;
@@ -44,9 +45,15 @@ public class PlayerScript : MonoBehaviour
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlaneExit += RunEnemySpawningPlaneExitOperations;
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += ActivateIsInMazeBool;
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += DeactivateIsInMazeBool;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionMathsLevel += ActivateIsInMathsLevel;
+        GameManager.instance.mathEvents.OnPlayerFinishedMathsScene += DeactivateIsInMathsLevel;
+        //GameManager.instance.CollisionEvent.OnPla += ActivateIsInMathsLevel;
 
 
-        normalMovement = true; 
+
+        //normalMovement = true; 
+        ActivateNormalMovement();
+        DeactivateIsInMathsLevel();
         //SetPlayerWalkForward();
 
         ////GameManager.instance.CollisionEvent.OnPlayerPlaneCollisionSceneChanger += ShiftPlayerPositionForward;
@@ -65,22 +72,23 @@ public class PlayerScript : MonoBehaviour
 
     private void BasicPlayerMovement()
     {
-        GetPlayerInputAxis();
-        //float xInput = Input.GetAxis("Horizontal");
-        //float zInput = Input.GetAxis("Vertical");
-        if (normalMovement)
+        if (!isInMathsLevel)
         {
-            SetPlayerMoveDirection();
+            GetPlayerInputAxis();
+            if (normalMovement)
+            {
+                SetPlayerMoveDirection();
+            }
+            else if (invertedMovement)
+            {
+                InvertPlayerMoveDirection();
+            }
+            else if (difficultMovement)
+            {
+                SetDifficultPlayerMoveDirection();
+            }
+            MovePlayer();
         }
-        else if (invertedMovement)
-        {
-            InvertPlayerMoveDirection();
-        }
-        else if (difficultMovement)
-        {
-            SetDifficultPlayerMoveDirection();
-        }
-        MovePlayer();
     }
 
     private void SetPlayerMoveDirection()
@@ -246,6 +254,16 @@ public class PlayerScript : MonoBehaviour
     private void DeactivateIsInMazeBool()
     {
         isInMaze = false;
+    }
+
+    private void ActivateIsInMathsLevel()
+    {
+        isInMathsLevel = true;
+    }
+
+    private void DeactivateIsInMathsLevel()
+    {
+        isInMathsLevel = false;
     }
 
 }

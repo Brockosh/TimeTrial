@@ -11,6 +11,7 @@ public class CollisionEventScript : MonoBehaviour
     public event Action OnPlayerCollisionFinishLine;
     public event Action OnPlayerCollisionDifficultMovementPlane;
     public event Action OnPlayerCollisionDifficultMovementPlaneExit;
+    public event Action OnPlayerCollisionDifficultMovementPlaneRespawn;
     public event Action OnPlayerPlaneCollisionRedZone;
     public event Action OnPlayerPlaneCollisionOrangeZone;
     public event Action OnPlayerPlaneCollisionYellowZone;
@@ -112,6 +113,11 @@ public class CollisionEventScript : MonoBehaviour
     public void CallPlayerCollisionCorrectDoor()
     {
         OnPlayerCollisionCorrectDoor?.Invoke();
+    }
+
+    public void CallPlayerCollisionDifficultMovementPlaneRespawn()
+    {
+        OnPlayerCollisionDifficultMovementPlaneRespawn?.Invoke();
     }
 
 }

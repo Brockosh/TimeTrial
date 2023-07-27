@@ -12,6 +12,7 @@ public class TextPrompts : MonoBehaviour
     public TextMeshProUGUI weirdMovement;
     public TextMeshProUGUI moveAroundTheBrickWalls;
     public TextMeshProUGUI finished;
+    public TextMeshProUGUI answerFasterThanRobot;
     private bool hasPlayerHitDifficultMovementPlane;
     private bool hasPlayerHitEnemySpawningPlane;
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class TextPrompts : MonoBehaviour
         weirdMovement.gameObject.SetActive(false);
         moveAroundTheBrickWalls.gameObject.SetActive(false);
         finished.gameObject.SetActive(false);
+        answerFasterThanRobot.gameObject.SetActive(false);  
         hasPlayerHitDifficultMovementPlane = false;
         hasPlayerHitEnemySpawningPlane = false;
         GameManager.instance.CollisionEvent.OnPlayerCollisionStartLine += ActivateFindTheRightDoorText;
@@ -34,6 +36,9 @@ public class TextPrompts : MonoBehaviour
         GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlane += ActivateDifficultMovementBool;
         GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlaneExit += DeactivateWeirdMovementAndBrickWallText;
         GameManager.instance.CollisionEvent.OnPlayerCollisionFinishLine += ActivateFinishedText;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionMathsLevel += ActivateAnswerFasterThanRobotText;
+        GameManager.instance.mathEvents.OnPlayerFinishedMathsScene += DeactivateAnswerFasterThanRobotText;
+
     }
 
     // Update is called once per frame
@@ -107,5 +112,17 @@ public class TextPrompts : MonoBehaviour
     {
         finished.gameObject.SetActive(true);
     }
+
+    private void ActivateAnswerFasterThanRobotText()
+    {
+        answerFasterThanRobot.gameObject.SetActive(true);
+    }
+
+    private void DeactivateAnswerFasterThanRobotText()
+    {
+        answerFasterThanRobot.gameObject.SetActive(false);
+    }
+
+
 }
 

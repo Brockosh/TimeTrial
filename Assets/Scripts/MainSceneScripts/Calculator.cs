@@ -12,6 +12,7 @@ public class Calculator : MonoBehaviour
     private int[] numbersForMathsQuestions = new int[2];
     private int correctAnswer;
     private int playerAnswerAsInt = 0;
+    private float countDown = 3f;
 
     private const int ANSWERS_REQUIRED = 5;
     private int correctAnswerCount;

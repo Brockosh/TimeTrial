@@ -23,6 +23,7 @@ public class ReturnToMainMenuButton : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(0);
     }
 

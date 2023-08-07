@@ -12,12 +12,16 @@ public class Calculator : MonoBehaviour
     private int[] numbersForMathsQuestions = new int[2];
     private int correctAnswer;
     private int playerAnswerAsInt = 0;
-    private float countDown = 3f;
+    //private float countDown = 3f;
 
     private const int ANSWERS_REQUIRED = 5;
     private int correctAnswerCount;
 
     private static readonly Random RandomNumberGenerator = new Random();
+
+
+    public float CorrectAnswer
+    { get { return correctAnswer; } }
 
     //private void Awake()
     //{
@@ -31,6 +35,7 @@ public class Calculator : MonoBehaviour
     {
         GameManager.instance.CollisionEvent.OnPlayerCollisionMathsLevel += RunMathsFunctions;
         GameManager.instance.mathEvents.OnPlayerCorrectAnswer += IncrementCorrectAnswerCount;
+        GameManager.instance.mathEvents.OnTimeUp += RunMathsFunctions;
         //SelectPlayerTextEntry();
         //RunMathsFunctions();
     }
@@ -127,6 +132,8 @@ public class Calculator : MonoBehaviour
     //{
     //    playerAnswer.Select();
     //}
+
+   
 
  
     private void IncrementCorrectAnswerCount()

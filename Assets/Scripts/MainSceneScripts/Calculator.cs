@@ -8,6 +8,7 @@ public class Calculator : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI multiplicationQuestion;
     [SerializeField] TMP_InputField playerAnswer;
+    [SerializeField] CountdownTimer countDownTimer;
 
     private int[] numbersForMathsQuestions = new int[2];
     private int correctAnswer;
@@ -35,6 +36,7 @@ public class Calculator : MonoBehaviour
     {
         GameManager.instance.CollisionEvent.OnPlayerCollisionMathsLevel += RunMathsFunctions;
         GameManager.instance.mathEvents.OnPlayerCorrectAnswer += IncrementCorrectAnswerCount;
+        GameManager.instance.mathEvents.OnPlayerCorrectAnswer += RunMathsFunctions;
         GameManager.instance.mathEvents.OnTimeUp += RunMathsFunctions;
         //SelectPlayerTextEntry();
         //RunMathsFunctions();
@@ -46,6 +48,7 @@ public class Calculator : MonoBehaviour
         {
             playerAnswerAsInt = ConvertPlayerAnswerToInt(playerAnswer, playerAnswerAsInt);
             CheckIfAnswerIsCorrect(playerAnswerAsInt, correctAnswer);
+            GameManager.instance.mathEvents.CallPlayerAnswerSubmitted();
         }
         if (correctAnswerCount == ANSWERS_REQUIRED) 
         {
@@ -86,13 +89,17 @@ public class Calculator : MonoBehaviour
         multiplicationQuestion.text = $"{array[0]} x {array[1]} = ?";
     }
 
-    private void CheckIfAnswerIsCorrect(int playerAnswer, int correctAnswer)
+    private void CheckIfAnswerIsCorrect(int answer, int correctAnswer)
     {
-        if (playerAnswer == correctAnswer)
+        if (answer == correctAnswer && countDownTimer.CountDownTime > 0)
         {
             GameManager.instance.mathEvents.CallPlayerCorrectAnswer();
             Debug.Log("Correct!");
-            RunMathsFunctions();
+        }
+        else if (answer == correctAnswer && countDownTimer.CountDownTime < 1)
+        {
+            GameManager.instance.mathEvents.CallPlayerCorrectAnswerTooLate();
+            Debug.Log("Correct but too late.");
         }
         else
         {
@@ -100,7 +107,8 @@ public class Calculator : MonoBehaviour
             Debug.Log("Incorrect. The correct answer is " + correctAnswer);
         }
 
-        Debug.Log($"Your answer: {playerAnswer} Correct Answer: {correctAnswer}");
+
+        Debug.Log($"Your answer: {answer}, Correct Answer: {correctAnswer}");
     }
 
     private int ConvertPlayerAnswerToInt(TMP_InputField playerAnswer, int playerAnswerAsInt)
@@ -133,6 +141,10 @@ public class Calculator : MonoBehaviour
     //    playerAnswer.Select();
     //}
 
+    private void ResetText()
+    {
+        playerAnswer.text = string.Empty;
+    }
    
 
  

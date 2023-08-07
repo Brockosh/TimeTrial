@@ -14,6 +14,8 @@ public class CountdownTimer : MonoBehaviour
 
     private Coroutine countdownCoroutine; 
 
+    public float CountDownTime { get { return countDownTime; } }
+
     private void Start()
     {
         GameManager.instance.CollisionEvent.OnPlayerCollisionMathsLevel += StartCountDown;

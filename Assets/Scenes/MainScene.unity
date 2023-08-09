@@ -7334,7 +7334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3663911659243722930, guid: 2a34b7f1566838f42ad9f35a5646d3e9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.09
+      value: 27.8
       objectReference: {fileID: 0}
     - target: {fileID: 3663911659243722930, guid: 2a34b7f1566838f42ad9f35a5646d3e9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7610,7 +7610,6 @@ MonoBehaviour:
   target: {fileID: 1051881907}
   smoothSpeed: 0.125
   ThirdPersonOffset: {x: 0, y: 3, z: -5}
-  FirstPersonOffest: {x: 0, y: 0, z: 0}
 --- !u!1001 &970051607
 PrefabInstance:
   m_ObjectHideFlags: 0

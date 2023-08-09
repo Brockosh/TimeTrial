@@ -29,7 +29,9 @@ public class PlayerScript : MonoBehaviour
     private float mouseX;
 
     private GameObject enemySpawningPlane;
+    private GameObject difficultMovementPlane;
     private Vector3 enemySpawningPlaneOffset;
+    private Vector3 difficultMovementPlaneOffset;
 
 
     private void Start()
@@ -37,9 +39,12 @@ public class PlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         myAnimator = GetComponent<Animator>();
         enemySpawningPlane = GameObject.FindGameObjectWithTag("EnemySpawningPlane");
+        difficultMovementPlane = GameObject.FindGameObjectWithTag("DifficultMovementPlane");
         SetEnemySpawningPlaneOffset();
+        SetDifficultMovementPlaneOffset();
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemy += MovePlayerToEnemySpawningPlaneOffset;
         GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlane += RunDifficultMovementPlaneEntranceOperations;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlaneFall += MovePlayerToDifficultMovementPlaneOffset;
         GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlaneExit += RunDifficultMovementPlaneExitOperations;
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlane += RunEnemySpawningPlaneEntranceOperations;
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlaneExit += RunEnemySpawningPlaneExitOperations;
@@ -222,6 +227,7 @@ public class PlayerScript : MonoBehaviour
         difficultMovement = false;
     }
 
+
     private void ShiftPlayerPositionForward()
     {
         transform.position += new Vector3(0, 10, 0);
@@ -237,11 +243,21 @@ public class PlayerScript : MonoBehaviour
         enemySpawningPlaneOffset = (enemySpawningPlane.transform.position - new Vector3(0, 0, 15));
     }
 
+    private void SetDifficultMovementPlaneOffset()
+    {
+        difficultMovementPlaneOffset = (difficultMovementPlane.transform.position - new Vector3(0, 0, 15));
+    }
+
     private void MovePlayerToEnemySpawningPlaneOffset()
     {
         transform.position = enemySpawningPlaneOffset;
     }
-  
+
+    private void MovePlayerToDifficultMovementPlaneOffset()
+    {
+        transform.position = difficultMovementPlaneOffset;
+    }
+
     private void ActivateIsInMazeBool()
     {
         isInMaze = true;

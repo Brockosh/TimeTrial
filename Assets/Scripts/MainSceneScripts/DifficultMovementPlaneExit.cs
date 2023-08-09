@@ -9,7 +9,7 @@ public class DifficultMovementPlaneExit : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("IMPACT");
-            GameManager.instance.CollisionEvent.CallPlayerPlaneCollisionDifficultMovementPlaneExit();
+            GameManager.instance.CollisionEvent.CallPlayerCollisionDifficultMovementPlaneExit();
         }
     }
 }

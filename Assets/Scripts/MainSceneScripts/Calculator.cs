@@ -96,7 +96,7 @@ public class Calculator : MonoBehaviour
             GameManager.instance.mathEvents.CallPlayerCorrectAnswer();
             Debug.Log("Correct!");
         }
-        else if (answer == correctAnswer && countDownTimer.CountDownTime < 1)
+        else if (answer == correctAnswer && countDownTimer.CountDownTime <= 0)
         {
             GameManager.instance.mathEvents.CallPlayerCorrectAnswerTooLate();
             Debug.Log("Correct but too late.");

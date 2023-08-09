@@ -10,6 +10,7 @@ public class CollisionEventScript : MonoBehaviour
     public event Action OnPlayerCollisionStartLine;
     public event Action OnPlayerCollisionFinishLine;
     public event Action OnPlayerCollisionDifficultMovementPlane;
+    public event Action OnPlayerCollisionDifficultMovementPlaneFall;
     public event Action OnPlayerCollisionDifficultMovementPlaneExit;
     public event Action OnPlayerCollisionDifficultMovementPlaneRespawn;
     public event Action OnPlayerPlaneCollisionRedZone;
@@ -34,12 +35,17 @@ public class CollisionEventScript : MonoBehaviour
 
     public event Action OnPlayerPlaneCollisionSceneChanger;
 
-    public void CallPlayerPlaneCollisionDifficultMovementPlane()
+    public void CallPlayerCollisionDifficultMovementPlane()
     {
         OnPlayerCollisionDifficultMovementPlane?.Invoke();
     }
 
-    public void CallPlayerPlaneCollisionDifficultMovementPlaneExit()
+    public void CallPlayerCollisionDifficultMovementPlaneFall()
+    {
+        OnPlayerCollisionDifficultMovementPlaneFall?.Invoke();
+    }
+
+    public void CallPlayerCollisionDifficultMovementPlaneExit()
     {
         OnPlayerCollisionDifficultMovementPlaneExit?.Invoke();
     }

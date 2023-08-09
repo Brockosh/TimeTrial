@@ -25,6 +25,7 @@ public class PlayerAnswer : MonoBehaviour
 
 
         GameManager.instance.mathEvents.OnPlayerCorrectAnswer += ResetPlayerTextEntry;
+        GameManager.instance.mathEvents.OnPlayerCorrectAnswerTooLate += ResetPlayerTextEntry;
         GameManager.instance.mathEvents.OnPlayerIncorrectAnswer += ResetPlayerTextEntry;
         GameManager.instance.mathEvents.OnPlayerCorrectAnswer += ActivatePlayerTextEntry;
         GameManager.instance.mathEvents.OnPlayerIncorrectAnswer += ActivatePlayerTextEntry;

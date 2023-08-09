@@ -12,9 +12,9 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         transform.Rotate(0, 180, 0);
-        player = GameObject.FindGameObjectWithTag("Player");
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemy += DestroyEnemy;
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlaneExit += DestroyEnemy;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
@@ -58,5 +58,6 @@ public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemy -= DestroyEnemy;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlaneExit -= DestroyEnemy;
     }
 }

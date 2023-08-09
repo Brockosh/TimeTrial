@@ -10,7 +10,7 @@ public class DifficultMovementPlane : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.CollisionEvent.CallPlayerPlaneCollisionDifficultMovementPlane();
+            GameManager.instance.CollisionEvent.CallPlayerCollisionDifficultMovementPlane();
             Debug.Log("Collision Logged");
         }
     }

@@ -49,7 +49,7 @@ public class PreGameTimer : MonoBehaviour
                     break;
             }
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1.2f);
 
             countdownTime--;
         }

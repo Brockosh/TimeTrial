@@ -37,6 +37,8 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        //WHY IS THIS NOT WORKING?
+        //FreezePlayer();
         myAnimator = GetComponent<Animator>();
         enemySpawningPlane = GameObject.FindGameObjectWithTag("EnemySpawningPlane");
         difficultMovementPlane = GameObject.FindGameObjectWithTag("DifficultMovementPlane");
@@ -52,17 +54,10 @@ public class PlayerScript : MonoBehaviour
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += DeactivateIsInMazeBool;
         GameManager.instance.CollisionEvent.OnPlayerCollisionMathsLevel += ActivateIsInMathsLevel;
         GameManager.instance.mathEvents.OnPlayerFinishedMathsScene += DeactivateIsInMathsLevel;
-        //GameManager.instance.CollisionEvent.OnPla += ActivateIsInMathsLevel;
 
-
-
-        //normalMovement = true; 
         ActivateNormalMovement();
         DeactivateIsInMathsLevel();
-        //SetPlayerWalkForward();
 
-        ////GameManager.instance.CollisionEvent.OnPlayerPlaneCollisionSceneChanger += ShiftPlayerPositionForward;
-        ////GameManager.instance.mathEvents.OnPlayerFinishedMathsScene += ReloadScene;
     }
 
 
@@ -70,9 +65,6 @@ public class PlayerScript : MonoBehaviour
     {
         BasicPlayerMovement();
         ControlPlayerAnimations();
-        //SetUpPlayerMovement();
-        //DifficultPlayerMovement();
-        //InvertedPlayerMovement();
     }
 
     private void BasicPlayerMovement()
@@ -135,12 +127,6 @@ public class PlayerScript : MonoBehaviour
 
         moveDirection = new Vector3(xInput, 0, zInput);
     }
-
-    //private void MovePlayer()
-    //{
-    //    transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
-
-    //}
 
     private void MovePlayer()
     {
@@ -281,6 +267,12 @@ public class PlayerScript : MonoBehaviour
     {
         isInMathsLevel = false;
     }
+
+    //private void FreezePlayer()
+    //{
+    //    rb.constraints = RigidbodyConstraints.FreezeAll;
+    //}
+
 
 }
 

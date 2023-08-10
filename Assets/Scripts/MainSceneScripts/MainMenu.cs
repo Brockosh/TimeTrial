@@ -21,6 +21,8 @@ public class MainMenu : MonoBehaviour
     public void StartMainScene()
     {
         SceneManager.LoadScene(1);
+        GameManager.instance.gameEvents.CallPlayerHasEnteredMainScene();
+        Debug.Log("Called");
     }
 
     public void QuitGame()

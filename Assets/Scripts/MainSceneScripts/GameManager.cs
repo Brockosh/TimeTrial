@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public CollisionEventScript CollisionEvent;
     public MathEvents mathEvents;
+    public GameEvents gameEvents;
 
     private void Awake()
     {

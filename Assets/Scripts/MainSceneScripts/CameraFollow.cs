@@ -49,6 +49,7 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
+
     private IEnumerator SmoothTransitionToFirstPerson()
     {
         Vector3 firstPersonOffset = new Vector3(0, 1.5f, 0);

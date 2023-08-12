@@ -9,7 +9,8 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
     public float smoothSpeed = 0.125f;
     private Vector3 offset;
-    public Vector3 ThirdPersonOffset = new Vector3(0, 3, -5);
+    public Vector3 thirdPersonOffset = new Vector3(0, 3, -5);
+    public Quaternion thirdPersonRotation = Quaternion.Euler(20, 0, 0);
     //public Vector3 FirstPersonOffest = new Vector3(0, 0, 0);
     bool inFirstPerson = false;
 
@@ -20,7 +21,8 @@ public class CameraFollow : MonoBehaviour
        // GameManager.instance.gameEvents.OnCameraLerpComplete += ActivateCamera;
 
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += ChangeOffsetToFirstPerson;
-        GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += SetCameraPositionToThirdPerson;
+        //GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += SetCameraPositionToThirdPerson;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += ChangeOffsetToThirdPerson;
         SetCameraPositionToThirdPerson();
     }
 
@@ -32,13 +34,16 @@ public class CameraFollow : MonoBehaviour
     private void ChangeOffsetToFirstPerson()
     {
         StartCoroutine(SmoothTransitionToFirstPerson());
-        //offset = new Vector3(0, 1.5f, 0);
-        //inFirstPerson = true;
+    }
+
+    private void ChangeOffsetToThirdPerson()
+    {
+        StartCoroutine(SmoothTransitionToThirdPerson());
     }
 
     private void SetCameraPositionToThirdPerson()
     {
-        offset = ThirdPersonOffset;
+        offset = thirdPersonOffset;
         inFirstPerson = false;
         transform.rotation = Quaternion.Euler(20, 0, 0);
     }
@@ -55,16 +60,16 @@ public class CameraFollow : MonoBehaviour
 
     private IEnumerator SmoothTransitionToFirstPerson()
     {
-        Vector3 firstPersonOffset = new Vector3(0, 1.5f, 0);
         float duration = 1f;
         float elapsedTime = 0f;
 
         Quaternion startRotation = transform.rotation;
-        Quaternion endRotation = Quaternion.Euler(0, target.transform.eulerAngles.y, 0);
-
         Vector3 startingOffset = offset;
 
-        while (elapsedTime < duration) 
+        Quaternion endRotation = Quaternion.Euler(0, target.transform.eulerAngles.y, 0);
+        Vector3 firstPersonOffset = new Vector3(0, 1.5f, 0);
+
+        while (elapsedTime < duration)
         {
             float t = elapsedTime / duration;
             offset = Vector3.Lerp(startingOffset, firstPersonOffset, t);
@@ -74,11 +79,35 @@ public class CameraFollow : MonoBehaviour
         }
         offset = firstPersonOffset;
         inFirstPerson = true;
+
+       
     }
 
-    private void ActivateCamera()
+    private IEnumerator SmoothTransitionToThirdPerson()
     {
-        gameObject.SetActive(true);
+        float duration = 1f;
+        float elapsedTime = 0f;
+
+    
+        Vector3 startingOffset = offset;
+        Quaternion startRotation = transform.rotation;
+
+     
+        Vector3 endOffset = thirdPersonOffset;
+        Quaternion endRotation = thirdPersonRotation; 
+
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            offset = Vector3.Lerp(startingOffset, endOffset, t);
+            transform.rotation = Quaternion.Lerp(startRotation, endRotation, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        offset = endOffset;
+        transform.rotation = endRotation;
+        inFirstPerson = false; 
     }
 
 }

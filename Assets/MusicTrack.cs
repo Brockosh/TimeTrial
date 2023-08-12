@@ -9,7 +9,7 @@ public class MusicTrack : MonoBehaviour
     private void Start()
     {
         musicSource = GetComponent<AudioSource>();
-        //GameManager.instance.gameEvents.OnPlayerHasEnteredMainScene += PlaySong;
+        //GameManager.instance.gameEvents.on += PlaySong;
         PlaySong();
     }
 

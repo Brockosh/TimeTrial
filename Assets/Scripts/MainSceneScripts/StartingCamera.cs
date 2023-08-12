@@ -9,11 +9,11 @@ public class StartingCamera : MonoBehaviour
 {
     private Vector3 startingPosition = new Vector3(0, 15.3999996f, 160.699997f);
     private Vector3 endingPosition = new Vector3(0, 12.8f, 34.4f);
-    private float lerpDuration = 7.0f;
+    private float lerpDuration = 5.65f;
 
     private void Start()
     {
-        StartCoroutine(LerpCameraPosition());
+        GameManager.instance.gameEvents.OnPlayerHasEnteredMainScene += StartCameraLerp;
     }
 
     IEnumerator LerpCameraPosition()
@@ -31,6 +31,13 @@ public class StartingCamera : MonoBehaviour
         }
 
         transform.position = endingPosition;
+        yield return new WaitForSeconds(1f);
+        GameManager.instance.gameEvents.CallCameraLerpCompelte();
     }
+
+   private void StartCameraLerp()
+   {
+        StartCoroutine(LerpCameraPosition());
+   }
 
 }

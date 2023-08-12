@@ -17,8 +17,8 @@ public class PreGameTimer : MonoBehaviour
     private void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
-        //GameManager.instance.gameEvents.OnPlayerHasEnteredMainScene += StartCountdown;
-        StartCoroutine(Countdown());
+        GameManager.instance.gameEvents.OnCameraLerpComplete+= StartCoroutineMethod;
+        //StartCoroutine(Countdown());
     }
 
     IEnumerator Countdown()
@@ -43,27 +43,30 @@ public class PreGameTimer : MonoBehaviour
                     countdownText.text = "Go!";
                     audioSource.clip = goClip;
                     audioSource.Play();
+                    GameManager.instance.gameEvents.CallPreGameTimerComplete();
                     break;
                 default:
                     countdownText.text = countdownTime.ToString();
                     break;
             }
 
-            yield return new WaitForSeconds(1.2f);
+            yield return new WaitForSeconds(1.025f);
 
             countdownTime--;
         }
 
-        StartGame();
+        countdownText.text = "";
+
     }
 
-    //private void StartCountdown()
-    //{
-    //    StartCoroutine(Countdown());
-    //}
-    void StartGame()
+    private void StartCoroutineMethod()
     {
-        // Logic to start your game goes here
-        countdownText.text = ""; // This hides the countdown text
+        StartCoroutine(Countdown());
+    }
+
+
+    void StartCountDown()
+    {
+        Invoke("StartCoroutineMethod", 2f);
     }
 }

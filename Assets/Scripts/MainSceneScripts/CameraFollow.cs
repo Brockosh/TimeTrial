@@ -16,6 +16,9 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
+        //gameObject.SetActive(false);
+       // GameManager.instance.gameEvents.OnCameraLerpComplete += ActivateCamera;
+
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += ChangeOffsetToFirstPerson;
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += SetCameraPositionToThirdPerson;
         SetCameraPositionToThirdPerson();
@@ -72,4 +75,10 @@ public class CameraFollow : MonoBehaviour
         offset = firstPersonOffset;
         inFirstPerson = true;
     }
+
+    private void ActivateCamera()
+    {
+        gameObject.SetActive(true);
+    }
+
 }

@@ -44,6 +44,10 @@ public class PlayerScript : MonoBehaviour
         difficultMovementPlane = GameObject.FindGameObjectWithTag("DifficultMovementPlane");
         SetEnemySpawningPlaneOffset();
         SetDifficultMovementPlaneOffset();
+
+        GameManager.instance.gameEvents.OnPlayerHasEnteredMainScene += FreezePlayer;
+        GameManager.instance.gameEvents.OnPreGameTimerFinished += UnFreezePlayer;
+
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemy += MovePlayerToEnemySpawningPlaneOffset;
         GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlane += RunDifficultMovementPlaneEntranceOperations;
         GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlaneFall += MovePlayerToDifficultMovementPlaneOffset;
@@ -268,10 +272,17 @@ public class PlayerScript : MonoBehaviour
         isInMathsLevel = false;
     }
 
-    //private void FreezePlayer()
-    //{
-    //    rb.constraints = RigidbodyConstraints.FreezeAll;
-    //}
+    private void FreezePlayer()
+    {
+        moveSpeed = 0;
+        rotationSpeed = 0;
+    }
+
+    private void UnFreezePlayer()
+    {
+        moveSpeed = 5;
+        rotationSpeed = 10;
+    }
 
 
 }

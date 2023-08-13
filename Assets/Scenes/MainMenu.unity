@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 975298275}
   - component: {fileID: 975298274}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TimeTrialText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -496,8 +496,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Time Trial
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d3745d6128cc3a1409ecae722caf27df, type: 2}
+  m_sharedMaterial: {fileID: 5749788760637869986, guid: d3745d6128cc3a1409ecae722caf27df, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -521,10 +521,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 36
+  m_fontSize: 140
+  m_fontSizeBase: 140
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0

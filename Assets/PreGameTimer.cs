@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
 public class PreGameTimer : MonoBehaviour
 {
@@ -30,25 +31,26 @@ public class PreGameTimer : MonoBehaviour
             {
                 case 3:
                     countdownText.text = "Ready";
-                    audioSource.clip = readyClip;
-                    audioSource.Play();
-                    Debug.Log("Ran audio 1");
+                    audioSource.PlayOneShot(readyClip);
                     break;
                 case 2:
                     countdownText.text = "Set";
-                    audioSource.clip = setClip;
-                    audioSource.Play();
+                    audioSource.PlayOneShot(setClip);
                     break;
                 case 1:
                     countdownText.text = "Go!";
-                    audioSource.clip = goClip;
-                    audioSource.Play();
+                    audioSource.PlayOneShot(goClip);
                     GameManager.instance.gameEvents.CallPreGameTimerComplete();
                     break;
                 default:
                     countdownText.text = countdownTime.ToString();
                     break;
             }
+
+            countdownText.rectTransform.DOScale(1.5f, 0.5f).OnComplete(() =>
+            {
+                countdownText.rectTransform.DOScale(1f, 0.5f);
+            });
 
             yield return new WaitForSeconds(1.025f);
 

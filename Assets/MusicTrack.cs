@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class MusicTrack : MonoBehaviour
 {
-    AudioSource musicSource;
+    [SerializeField] private AudioSource musicSource;
 
     private void Start()
     {
-        musicSource = GetComponent<AudioSource>();
-        //GameManager.instance.gameEvents.on += PlaySong;
+        //musicSource.volume = AudioManager.instance.GetVolume();
         PlaySong();
     }
 
     private void PlaySong()
     {
         musicSource.Play();
+        Debug.Log("Song is playing.");
+    }
+
+    private void Update()
+    {
+        Debug.Log(musicSource.volume);
     }
 }

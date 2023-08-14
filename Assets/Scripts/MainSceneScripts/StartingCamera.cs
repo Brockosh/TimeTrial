@@ -9,9 +9,16 @@ public class StartingCamera : MonoBehaviour
     private Vector3 endingPosition = new Vector3(0, 12.8f, 34.4f);
     private float lerpDuration = 5.65f;
 
+    
+
     private void Start()
     {
         GameManager.instance.gameEvents.OnPlayerHasEnteredMainScene += StartCameraLerp;
+    }
+
+    private void Update()
+    {
+        
     }
 
     IEnumerator LerpCameraPosition()

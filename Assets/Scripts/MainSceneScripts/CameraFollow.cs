@@ -29,6 +29,7 @@ public class CameraFollow : MonoBehaviour
     private void Update()
     {
         SetCameraPosition();
+        SphereCastToPlayer();
     }
 
     private void ChangeOffsetToFirstPerson()
@@ -107,7 +108,30 @@ public class CameraFollow : MonoBehaviour
 
         offset = endOffset;
         transform.rotation = endRotation;
-        inFirstPerson = false; 
+        inFirstPerson = false;
     }
+
+
+    
+    private void SphereCastToPlayer()
+    {
+        RaycastHit hit;
+        float radius = 2f;
+        Vector3 directionToPlayer = target.position - transform.position;
+        float maxDistance = Vector3.Distance(target.position, transform.position);
+
+        Debug.DrawLine(transform.position, target.position, Color.red, 2.0f);
+
+        if (Physics.SphereCast(transform.position, radius, directionToPlayer, out hit, maxDistance))
+        {
+            // Check if you hit a wall or door
+            if (hit.collider.CompareTag("StageOneWall") || hit.collider.CompareTag("Door"))
+            {
+                Debug.Log("Hit detected on stageOneWall");
+            }
+
+        }
+    }
+
 
 }

@@ -15,6 +15,7 @@ TagManager:
   - GreenMazeIndicator
   - MazeEntrance
   - EnemySpawningPlane
+  - StageOneWall
   layers:
   - Default
   - TransparentFX

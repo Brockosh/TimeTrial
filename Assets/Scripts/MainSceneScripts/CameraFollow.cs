@@ -125,9 +125,9 @@ public class CameraFollow : MonoBehaviour
         if (Physics.SphereCast(transform.position, radius, directionToPlayer, out hit, maxDistance))
         {
             // Check if you hit a wall or door
-            if (hit.collider.CompareTag("StageOneWall") || hit.collider.CompareTag("Door"))
+            if (hit.collider.CompareTag("CameraDoorTrigger"))
             {
-                Debug.Log("Hit detected on stageOneWall");
+                Debug.Log("Hit detected on door");
             }
 
         }

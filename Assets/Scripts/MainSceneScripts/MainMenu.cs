@@ -5,23 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     
     public void StartMainScene()
     {
         SceneManager.LoadScene(1);
-        //GameManager.instance.gameEvents.CallPlayerHasEnteredMainScene();
         Debug.Log("Called");
     }
 

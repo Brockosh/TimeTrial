@@ -16,6 +16,7 @@ TagManager:
   - MazeEntrance
   - EnemySpawningPlane
   - StageOneWall
+  - CameraDoorTrigger
   layers:
   - Default
   - TransparentFX

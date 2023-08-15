@@ -13,11 +13,15 @@ public class SliderScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         slider.onValueChanged.AddListener((v) =>
         {
             sliderText.text = v.ToString();
-            AudioManager.instance.SetVolume(v);
+
+            float normalisedVolume = v / 100f;
+            AudioManager.instance.SetVolume(normalisedVolume);
         });
+        slider.value = 50;
     }
     
 

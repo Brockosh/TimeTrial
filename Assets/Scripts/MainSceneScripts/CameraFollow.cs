@@ -14,6 +14,8 @@ public class CameraFollow : MonoBehaviour
     //public Vector3 FirstPersonOffest = new Vector3(0, 0, 0);
     bool inFirstPerson = false;
 
+    [Serialize] public LayerMask cameraTarget;
+
 
     private void Start()
     {
@@ -116,13 +118,13 @@ public class CameraFollow : MonoBehaviour
     private void SphereCastToPlayer()
     {
         RaycastHit hit;
-        float radius = 2f;
+        float radius = 0.002f;
         Vector3 directionToPlayer = target.position - transform.position;
         float maxDistance = Vector3.Distance(target.position, transform.position);
 
         Debug.DrawLine(transform.position, target.position, Color.red, 2.0f);
 
-        if (Physics.SphereCast(transform.position, radius, directionToPlayer, out hit, maxDistance))
+        if (Physics.SphereCast(transform.position, radius, directionToPlayer, out hit, maxDistance, cameraTarget))
         {
             // Check if you hit a wall or door
             if (hit.collider.CompareTag("CameraDoorTrigger"))
@@ -132,6 +134,12 @@ public class CameraFollow : MonoBehaviour
 
         }
     }
+
+ //Use a layermask to ignore everything but the spcified layer.
+
+    //Make a variable of type layer mask, set it in the unity inspector (make it public) 
+
+
 
 
 }

@@ -1,11 +1,19 @@
 
 using System.Collections;
+using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    [System.Serializable]
+    public class Doorway
+    {
+        public Transform doorTrigger;
+        public Transform doorThreshold;
+    }
+
     public Transform target;
     public float smoothSpeed = 0.125f;
     private Vector3 offset;
@@ -15,15 +23,12 @@ public class CameraFollow : MonoBehaviour
     bool inFirstPerson = false;
 
     [Serialize] public LayerMask cameraTarget;
-
+    public List<Doorway> doorways = new List<Doorway> ();
+    private Transform currentDoorThreshhold;
 
     private void Start()
     {
-        //gameObject.SetActive(false);
-       // GameManager.instance.gameEvents.OnCameraLerpComplete += ActivateCamera;
-
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += ChangeOffsetToFirstPerson;
-        //GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += SetCameraPositionToThirdPerson;
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += ChangeOffsetToThirdPerson;
         SetCameraPositionToThirdPerson();
     }
@@ -81,9 +86,7 @@ public class CameraFollow : MonoBehaviour
             yield return null;
         }
         offset = firstPersonOffset;
-        inFirstPerson = true;
-
-       
+        inFirstPerson = true;  
     }
 
     private IEnumerator SmoothTransitionToThirdPerson()
@@ -113,8 +116,16 @@ public class CameraFollow : MonoBehaviour
         inFirstPerson = false;
     }
 
+    private void AdjustCameraHeightBasedOnDoorwayPosition()
+    {
+        float distBetweenPlayerAndThresh = Vector3.Distance(target.position, currentDoorThreshhold.position);
+        float maxDoorwayDistance = 3.0f;
+        float t = Mathf.Clamp01(distBetweenPlayerAndThresh / maxDoorwayDistance);
 
-    
+        float desiredCameraHeight = Mathf.Lerp(thirdPersonOffset.y - 2f, thirdPersonOffset.y, t);
+        offset.y = desiredCameraHeight;
+    }
+
     private void SphereCastToPlayer()
     {
         RaycastHit hit;
@@ -129,15 +140,18 @@ public class CameraFollow : MonoBehaviour
             // Check if you hit a wall or door
             if (hit.collider.CompareTag("CameraDoorTrigger"))
             {
-                Debug.Log("Hit detected on door");
-            }
+                currentDoorThreshhold = doorways.Find(doorway => doorway.doorTrigger == hit.collider.transform).doorThreshold;
+                AdjustCameraHeightBasedOnDoorwayPosition();
 
+
+            }
+        }
+        else
+        {
+            offset.y = Mathf.Lerp(offset.y, 3, 3f);
         }
     }
 
- //Use a layermask to ignore everything but the spcified layer.
-
-    //Make a variable of type layer mask, set it in the unity inspector (make it public) 
 
 
 

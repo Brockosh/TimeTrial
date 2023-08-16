@@ -975,24 +975,8 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2061983738}
     m_Modifications:
-    - target: {fileID: 5928686369980374881, guid: fe03336151ba9694486c5ae11b95d1e3, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7382119652754725904, guid: fe03336151ba9694486c5ae11b95d1e3, type: 3}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7382119652754725904, guid: fe03336151ba9694486c5ae11b95d1e3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.3375
-      objectReference: {fileID: 0}
-    - target: {fileID: 7382119652754725904, guid: fe03336151ba9694486c5ae11b95d1e3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3.5940003
-      objectReference: {fileID: 0}
-    - target: {fileID: 7382119652754725904, guid: fe03336151ba9694486c5ae11b95d1e3, type: 3}
-      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7382119652754725904, guid: fe03336151ba9694486c5ae11b95d1e3, type: 3}
@@ -1038,10 +1022,6 @@ PrefabInstance:
     - target: {fileID: 8605336483865796393, guid: fe03336151ba9694486c5ae11b95d1e3, type: 3}
       propertyPath: m_Name
       value: CameraDoorTrigger1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8605336483865796393, guid: fe03336151ba9694486c5ae11b95d1e3, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe03336151ba9694486c5ae11b95d1e3, type: 3}
@@ -1522,9 +1502,9 @@ Transform:
   - {fileID: 2061983738}
   - {fileID: 422161553}
   - {fileID: 516787544}
+  - {fileID: 2018273473}
   - {fileID: 2009379998}
   - {fileID: 910528627}
-  - {fileID: 2018273473}
   - {fileID: 684128183}
   - {fileID: 415015866}
   - {fileID: 943010769}
@@ -8684,6 +8664,13 @@ MonoBehaviour:
   cameraTarget:
     serializedVersion: 2
     m_Bits: 64
+  doorways:
+  - doorTrigger: {fileID: 603893628}
+    doorThreshold: {fileID: 1605828131}
+  - doorTrigger: {fileID: 1972662936}
+    doorThreshold: {fileID: 2114271269}
+  - doorTrigger: {fileID: 1384435214}
+    doorThreshold: {fileID: 1867028048}
 --- !u!81 &963194230
 AudioListener:
   m_ObjectHideFlags: 0
@@ -18976,6 +18963,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821e8a5aa4b1c454b855ca553b193e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1605828131 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3885618538642663058, guid: fe03336151ba9694486c5ae11b95d1e3, type: 3}
+  m_PrefabInstance: {fileID: 217898271}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1619793158 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 716296490626742068, guid: ab7d598baedc72b4a9518f161cc9d51e, type: 3}
@@ -20644,6 +20636,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4950086967037138, guid: 63e1976b906dbf24b9ae9d9335ef99a5, type: 3}
   m_PrefabInstance: {fileID: 1401132652}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1867028048 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3885618538642663058, guid: fe03336151ba9694486c5ae11b95d1e3, type: 3}
+  m_PrefabInstance: {fileID: 1083148913}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1867793903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21624,7 +21621,7 @@ Transform:
   - {fileID: 131546694}
   - {fileID: 1099698956}
   m_Father: {fileID: 246830866}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2026425205
 GameObject:
@@ -22040,6 +22037,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab7d598baedc72b4a9518f161cc9d51e, type: 3}
+--- !u!4 &2114271269 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3885618538642663058, guid: fe03336151ba9694486c5ae11b95d1e3, type: 3}
+  m_PrefabInstance: {fileID: 6754131442291764741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2121126346 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 716296490626742068, guid: ab7d598baedc72b4a9518f161cc9d51e, type: 3}

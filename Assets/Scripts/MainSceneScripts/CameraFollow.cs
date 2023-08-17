@@ -148,7 +148,7 @@ public class CameraFollow : MonoBehaviour
         }
         else
         {
-            offset.y = Mathf.Lerp(offset.y, 3, 3f);
+            //offset.y = Mathf.Lerp(offset.y, 3, 3f);
         }
     }
 

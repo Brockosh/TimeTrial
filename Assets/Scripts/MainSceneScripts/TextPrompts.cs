@@ -1,136 +1,3 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using TMPro;
-//using UnityEngine;
-//using DG.Tweening;
-
-//public class TextPrompts : MonoBehaviour
-//{
-
-//    public TextMeshProUGUI findTheRightDoor;
-//    public TextMeshProUGUI invertedMovement;
-//    public TextMeshProUGUI dodgeTheGhosts;
-//    public TextMeshProUGUI weirdMovement;
-//    public TextMeshProUGUI moveAroundTheBrickWalls;
-//    public TextMeshProUGUI finished;
-//    public TextMeshProUGUI answerFasterThanRobot;
-//    private bool hasPlayerHitDifficultMovementPlane;
-//    private bool hasPlayerHitEnemySpawningPlane;
-//    // Start is called before the first frame update
-//    void Start()
-//    {
-//        findTheRightDoor.gameObject.SetActive(false);
-//        invertedMovement.gameObject.SetActive(false);
-//        dodgeTheGhosts.gameObject.SetActive(false);
-//        weirdMovement.gameObject.SetActive(false);
-//        moveAroundTheBrickWalls.gameObject.SetActive(false);
-//        finished.gameObject.SetActive(false);
-//        answerFasterThanRobot.gameObject.SetActive(false);  
-//        hasPlayerHitDifficultMovementPlane = false;
-//        hasPlayerHitEnemySpawningPlane = false;
-//        GameManager.instance.CollisionEvent.OnPlayerCollisionStartLine += ActivateFindTheRightDoorText;
-//        GameManager.instance.CollisionEvent.OnPlayerCollisionCorrectDoor += DeativateFindTheRightDoorText;
-//        GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlane += RunEnemySpawningPlaneTextOperations;
-//        GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlane += ActivateEnemySpawningBool;
-//        GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlaneExit += DeactivateInvertedMovementAndGhostDodgeText;
-//        GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlane += RunDifficultMovementTextOperations;
-//        GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlane += ActivateDifficultMovementBool;
-//        GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlaneExit += DeactivateWeirdMovementAndBrickWallText;
-//        GameManager.instance.CollisionEvent.OnPlayerCollisionFinishLine += ActivateFinishedText;
-//        GameManager.instance.CollisionEvent.OnPlayerCollisionMathsLevel += ActivateAnswerFasterThanRobotText;
-//        GameManager.instance.mathEvents.OnPlayerFinishedMathsScene += DeactivateAnswerFasterThanRobotText;
-
-//    }
-
-//    // Update is called once per frame
-//    void Update()
-//    {
-
-//    }
-
-//    private void ActivateFindTheRightDoorText()
-//    {
-//        findTheRightDoor.gameObject.SetActive(true);
-//    }
-
-//    private void DeativateFindTheRightDoorText()
-//    {
-//        findTheRightDoor.gameObject.SetActive(false);
-//    }
-//    private void ActivateInvertedMovementAndGhostDodgeText()
-//    {
-//        invertedMovement.gameObject.SetActive(true);
-//        dodgeTheGhosts.gameObject.SetActive(true);
-//    }
-
-//    private void DeactivateInvertedMovementAndGhostDodgeText()
-//    {
-//        invertedMovement.gameObject.SetActive(false);
-//        dodgeTheGhosts.gameObject.SetActive(false);
-//    }
-
-//    private void RunEnemySpawningPlaneTextOperations()
-//    {
-//        if (!hasPlayerHitEnemySpawningPlane)
-//        {
-//            ActivateInvertedMovementAndGhostDodgeText();
-//            Invoke("DeactivateInvertedMovementAndGhostDodgeText", 3f);
-//        }
-//    }
-
-//    private void ActivateWeirdMovementAndBrickWallText()
-//    {
-//        weirdMovement.gameObject.SetActive(true);
-//        moveAroundTheBrickWalls.gameObject.SetActive(true);
-//    }
-
-//    private void DeactivateWeirdMovementAndBrickWallText()
-//    {
-//        weirdMovement.gameObject.SetActive(false);
-//        moveAroundTheBrickWalls.gameObject.SetActive(false);
-//    }
-
-//    private void RunDifficultMovementTextOperations()
-//    {
-//        if (!hasPlayerHitDifficultMovementPlane)
-//        {
-//            ActivateWeirdMovementAndBrickWallText();
-//            Invoke("DeactivateWeirdMovementAndBrickWallText", 3f);
-//        }
-//    }
-
-//    private void ActivateDifficultMovementBool()
-//    {
-//        hasPlayerHitDifficultMovementPlane = true;
-//    }
-
-//    private void ActivateEnemySpawningBool()
-//    {
-//        hasPlayerHitEnemySpawningPlane = true;
-//    }
-
-//    private void ActivateFinishedText()
-//    {
-//        finished.gameObject.SetActive(true);
-//        finished.rectTransform.DOScale(1.5f, 0.5f).OnComplete(() =>
-//        {
-//            finished.rectTransform.DOScale(1f, 0.5f);
-//        });
-//    }
-
-//    private void ActivateAnswerFasterThanRobotText()
-//    {
-//        answerFasterThanRobot.gameObject.SetActive(true);
-//    }
-
-//    private void DeactivateAnswerFasterThanRobotText()
-//    {
-//        answerFasterThanRobot.gameObject.SetActive(false);
-//    }
-
-
-//}
-
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -161,6 +28,7 @@ public class TextPrompt
         textComponent.rectTransform.DOScale(1.5f, 0.5f).OnComplete(() =>
         {
             textComponent.rectTransform.DOScale(1f, 0.5f);
+         
         });
     }
 
@@ -168,6 +36,11 @@ public class TextPrompt
     {
         Activate();
         Animate();
+    }
+
+    public void Pulse()
+    {
+        textComponent.rectTransform.DOScale(1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);     
     }
 }
 
@@ -194,7 +67,8 @@ public class TextPrompts : MonoBehaviour
         GameManager.instance.CollisionEvent.OnPlayerCollisionCorrectDoor += findTheRightDoor.Deactivate;
 
 
-        GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += mazeColourIndicateYourProgress.ActivateAndAnimate;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += mazeColourIndicateYourProgress.Activate;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += mazeColourIndicateYourProgress.Pulse;
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += mazeColourIndicateYourProgress.Deactivate;
 
 

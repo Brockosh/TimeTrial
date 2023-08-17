@@ -1,23 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+
 
 public class TimeTrialTitle : MonoBehaviour
 {
-    void Start()
-    {
-        MainMenuManager.instance.mainMenuEvents.OnPlayerPressedSettings += Deactivate;
-        MainMenuManager.instance.mainMenuEvents.OnPlayerPressedMainMenu += Activate;
-    }
+    private Vector3 startSize = new Vector3 (0, 0, 0); 
+    private Vector3 EndSize = new Vector3 (1.3f, 1.3f, 1.3f);
 
-
-    private void Deactivate()
+    private void Start()
     {
-        gameObject.SetActive(false);
-    }
-
-    private void Activate()
-    {
-        gameObject.SetActive(true);
+        gameObject.transform.localScale = startSize;
+        gameObject.transform.DOScale(EndSize, 3f).SetDelay(.5f);
     }
 }

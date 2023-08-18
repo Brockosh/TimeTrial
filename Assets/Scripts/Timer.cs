@@ -84,13 +84,26 @@ public class Timer : MonoBehaviour
         }
     }
 
+ 
+
     private void DisplayTimer()
     {
         if (isTimerActive)
         {
-            gameTimer.text = $"Time: {seconds.ToString("F2")}";
+            int minutes = Mathf.FloorToInt(seconds / 60);
+            float remainingSeconds = seconds % 60;
+
+            if (minutes > 0)
+            {
+                gameTimer.text = $"Time: {minutes} min {remainingSeconds.ToString("0")} sec";
+            }
+            else
+            {
+                gameTimer.text = $"Time: {seconds.ToString("F2")}";
+            }
         }
     }
+
 
     private void ActivateTimer()
     {

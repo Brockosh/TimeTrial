@@ -253,8 +253,8 @@ public class PlayerScript : MonoBehaviour
         isInMaze = true;
 
         //move this to beginning of game
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void DeactivateIsInMazeBool()

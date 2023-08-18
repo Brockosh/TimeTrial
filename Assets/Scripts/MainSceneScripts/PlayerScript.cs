@@ -14,6 +14,8 @@ public class PlayerScript : MonoBehaviour
     float zInput;
     float xVelocity;
     float zVelocity;
+
+    bool playerFrozen;
     public float moveSpeed;
     private Vector3 moveDirection;
     public float jumpForce = 10f;
@@ -37,8 +39,6 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        //WHY IS THIS NOT WORKING?
-        //FreezePlayer();
         myAnimator = GetComponent<Animator>();
         enemySpawningPlane = GameObject.FindGameObjectWithTag("EnemySpawningPlane");
         difficultMovementPlane = GameObject.FindGameObjectWithTag("DifficultMovementPlane");
@@ -73,7 +73,7 @@ public class PlayerScript : MonoBehaviour
 
     private void BasicPlayerMovement()
     {
-        if (!isInMathsLevel)
+        if (!isInMathsLevel && !playerFrozen)
         {
             GetPlayerInputAxis();
             if (normalMovement)
@@ -276,12 +276,14 @@ public class PlayerScript : MonoBehaviour
     {
         moveSpeed = 0;
         rotationSpeed = 0;
+        playerFrozen = true;
     }
 
     private void UnFreezePlayer()
     {
         moveSpeed = 5;
         rotationSpeed = 10;
+        playerFrozen = false;
     }
 
 

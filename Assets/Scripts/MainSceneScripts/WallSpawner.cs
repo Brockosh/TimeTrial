@@ -38,13 +38,18 @@ public class WallSpawner : MonoBehaviour
 
     private Vector3 GenerateValidWallPosition()
     {
-        //Could do certain amount of attempts with a break
-        //Return a Vector0
-        //Put boolean reference to know if it was forced out of loop
+        const int maxAttempts = 100;
+        int currentAttempt = 0;
         Vector3 spawnPosition;
         do
         {
             spawnPosition = GenerateRandomPosition();
+            currentAttempt++;
+            if (currentAttempt > maxAttempts)
+            {
+                Debug.Log("Max wall spawn attempts reached.");
+                return Vector3.zero;
+            }
         } while (!IsPositionValid(spawnPosition));
         return spawnPosition;
     }
@@ -58,7 +63,7 @@ public class WallSpawner : MonoBehaviour
     {
         float spawnX = Random.Range(minX, maxX);
         float spawnZ = Random.Range(minZ, maxZ);
-        return new Vector3(spawnX, 1.6f, spawnZ);
+        return new Vector3(spawnX, 0.9f, spawnZ);
     }
 
     private bool IsPositionValid(Vector3 position)

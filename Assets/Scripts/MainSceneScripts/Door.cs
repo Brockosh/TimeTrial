@@ -32,7 +32,7 @@ public class Door : MonoBehaviour
     private void OpenDoor()
     {
         transform.Rotate(0f, 90f, 0f);
-        myTransform.Translate(-myTransform.right);
+        myTransform.Translate(myTransform.right);
         myTransform.Translate(-myTransform.forward);
 
     }

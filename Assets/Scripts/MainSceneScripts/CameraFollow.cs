@@ -128,6 +128,9 @@ public class CameraFollow : MonoBehaviour
 
     private void SphereCastToPlayer()
     {
+        if (inFirstPerson) { return ; }
+
+
         RaycastHit hit;
         float radius = 0.002f;
         Vector3 directionToPlayer = target.position - transform.position;
@@ -142,13 +145,11 @@ public class CameraFollow : MonoBehaviour
             {
                 currentDoorThreshhold = doorways.Find(doorway => doorway.doorTrigger == hit.collider.transform).doorThreshold;
                 AdjustCameraHeightBasedOnDoorwayPosition();
-
-
             }
         }
         else
         {
-            //offset.y = Mathf.Lerp(offset.y, 3, 3f);
+            offset.y = Mathf.Lerp(offset.y, 3, Time.deltaTime);
         }
     }
 

@@ -129,7 +129,7 @@ public class PlayerScript : MonoBehaviour
             zInput = -zInput;
         }
 
-        moveDirection = new Vector3(xInput, 0, zInput);
+        moveDirection = new Vector3(xInput, 0, zInput).normalized;
     }
 
     private void MovePlayer()

@@ -20,6 +20,7 @@ public class CollisionEventScript : MonoBehaviour
 
 
     public event Action OnPlayerCollisionCorrectDoor;
+    public event Action OnPlayerCollisionDoorBarrier;
 
     public event Action OnPlayerCollisionMazeEntrance;
     public event Action OnPlayerCollisionMazeExit;
@@ -126,4 +127,8 @@ public class CollisionEventScript : MonoBehaviour
         OnPlayerCollisionDifficultMovementPlaneRespawn?.Invoke();
     }
 
+    public void CallPlayerCollisionDoorBarrier()
+    {
+        OnPlayerCollisionDoorBarrier?.Invoke();
+    }
 }

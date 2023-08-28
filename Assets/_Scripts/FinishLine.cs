@@ -6,6 +6,7 @@ public class FinishLine : MonoBehaviour
 {
 
     private AudioSource audioSource;
+    private int finishCount = 0;
 
     //public AudioClip finishedClip;
 
@@ -16,10 +17,11 @@ public class FinishLine : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && finishCount <= 0)
         {
             GameManager.instance.CollisionEvent.CallPlayerCollisionFinishLine();
             audioSource.Play();
+            finishCount++;
         }
     }
 

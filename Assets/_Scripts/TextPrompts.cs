@@ -80,8 +80,6 @@ public class TextPrompts : MonoBehaviour
         GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlaneExit += DeactivateMovementTexts;
 
         GameManager.instance.CollisionEvent.OnPlayerCollisionFinishLine += finished.ActivateAndAnimate;
-        GameManager.instance.CollisionEvent.OnPlayerCollisionMathsLevel += answerFasterThanRobot.ActivateAndAnimate;
-        GameManager.instance.mathEvents.OnPlayerFinishedMathsScene += answerFasterThanRobot.Deactivate;
     }
 
     private void InitializeTextPrompts()

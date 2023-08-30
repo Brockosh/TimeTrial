@@ -56,11 +56,8 @@ public class PlayerScript : MonoBehaviour
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlaneExit += RunEnemySpawningPlaneExitOperations;
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += ActivateIsInMazeBool;
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += DeactivateIsInMazeBool;
-        GameManager.instance.CollisionEvent.OnPlayerCollisionMathsLevel += ActivateIsInMathsLevel;
-        GameManager.instance.mathEvents.OnPlayerFinishedMathsScene += DeactivateIsInMathsLevel;
 
         ActivateNormalMovement();
-        DeactivateIsInMathsLevel();
 
     }
 

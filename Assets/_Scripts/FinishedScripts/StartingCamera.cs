@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class StartingCamera : MonoBehaviour
@@ -9,16 +7,9 @@ public class StartingCamera : MonoBehaviour
     private Vector3 endingPosition = new Vector3(0, 12.8f, 34.4f);
     private float lerpDuration = 5.65f;
 
-    
-
     private void Start()
     {
         GameManager.instance.gameEvents.OnPlayerHasEnteredMainScene += StartCameraLerp;
-    }
-
-    private void Update()
-    {
-        
     }
 
     IEnumerator LerpCameraPosition()
@@ -49,5 +40,4 @@ public class StartingCamera : MonoBehaviour
     {
         GameManager.instance.gameEvents.OnPlayerHasEnteredMainScene -= StartCameraLerp;
     }
-
 }

@@ -1,15 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ReturnToMainMenuButton : MonoBehaviour
 {
-
-    //public Button returnToMainMenuButton;
-    
-    // Start is called before the first frame update
     void Start()
     {
         DeactivateReturnToMainMenuButton();
@@ -17,15 +11,8 @@ public class ReturnToMainMenuButton : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(LoadMainMenu);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void LoadMainMenu()
     {
-        //SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(0);
     }
 

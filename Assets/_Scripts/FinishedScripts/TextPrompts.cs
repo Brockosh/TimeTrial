@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
@@ -38,6 +37,7 @@ public class TextPrompt
         Animate();
     }
 
+    // Makes the text pulse in size
     public void Pulse()
     {
         textComponent.rectTransform.DOScale(1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);     
@@ -61,6 +61,8 @@ public class TextPrompts : MonoBehaviour
         InitializeTextPrompts();
     }
 
+
+    // Attach methods to GameManager's collision events
     private void AttachDelegates()
     {
         GameManager.instance.CollisionEvent.OnPlayerCollisionStartLine += findTheRightDoor.ActivateAndAnimate;
@@ -70,7 +72,6 @@ public class TextPrompts : MonoBehaviour
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += mazeColourIndicateYourProgress.Activate;
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += mazeColourIndicateYourProgress.Pulse;
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += mazeColourIndicateYourProgress.Deactivate;
-
 
 
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlane += ActivateEnemyTexts;
@@ -94,6 +95,7 @@ public class TextPrompts : MonoBehaviour
         mazeColourIndicateYourProgress.Deactivate();
     }
 
+    //Activates texts for enemy spawning plane
     private void ActivateEnemyTexts()
     {
         if (!invertedMovement.hasActivated)
@@ -111,6 +113,7 @@ public class TextPrompts : MonoBehaviour
         dodgeTheGhosts.Deactivate();
     }
 
+    //Activates text for weird movement obstacle
     private void ActivateMovementTexts()
     {
         if (!weirdMovement.hasActivated)

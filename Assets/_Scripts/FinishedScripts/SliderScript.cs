@@ -1,16 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SliderScript : MonoBehaviour
 {
-
     [SerializeField] private Slider slider;
     [SerializeField] private TextMeshProUGUI sliderText;
 
-    // Start is called before the first frame update
     void Start()
     {
 
@@ -22,12 +18,5 @@ public class SliderScript : MonoBehaviour
             AudioManager.instance.SetVolume(normalisedVolume);
         });
         slider.value = 50;
-    }
-    
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

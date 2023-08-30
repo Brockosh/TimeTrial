@@ -1,25 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
 
 public class PreGameTimer : MonoBehaviour
 {
-    public int countdownTime = 3; 
-    public TMP_Text countdownText;
-
-    public AudioClip readyClip;
-    public AudioClip setClip;
-    public AudioClip goClip;
-
     private AudioSource audioSource;
+    [SerializeField] private int countdownTime = 3;
+    [SerializeField] private TMP_Text countdownText;
+    [SerializeField] private AudioClip readyClip;
+    [SerializeField] private AudioClip setClip;
+    [SerializeField] private AudioClip goClip;
 
     private void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
         GameManager.instance.gameEvents.OnCameraLerpComplete+= StartCoroutineMethod;
-        //StartCoroutine(Countdown());
     }
 
     IEnumerator Countdown()
@@ -56,19 +52,11 @@ public class PreGameTimer : MonoBehaviour
 
             countdownTime--;
         }
-
         countdownText.text = "";
-
     }
 
     private void StartCoroutineMethod()
     {
         StartCoroutine(Countdown());
-    }
-
-
-    void StartCountDown()
-    {
-        Invoke("StartCoroutineMethod", 2f);
     }
 }

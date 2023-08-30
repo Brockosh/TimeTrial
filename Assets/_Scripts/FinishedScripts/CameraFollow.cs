@@ -8,70 +8,58 @@ public class CameraFollow : MonoBehaviour
     [System.Serializable]
     public class Doorway
     {
-        public Transform doorTrigger;  
-        public Transform doorThreshold;  
+        public Transform doorTrigger;
+        public Transform doorThreshold;
     }
 
-    private Vector3 offset;  // The distance between the target and the camera
-    private bool inFirstPerson = false;  // Flag to indicate whether in first-person view
-
-   
-    public Transform target;  // The target that the camera will follow
-    public float smoothSpeed = 0.125f;  // Speed factor for smoothing camera movement
-    public Vector3 thirdPersonOffset = new Vector3(0, 3, -5);  // The offset for third-person view
-    public Quaternion thirdPersonRotation = Quaternion.Euler(20, 0, 0);  // The default rotation in third-person view
-    
+    [SerializeField] private Transform target;
+    private Vector3 offsetFromTarget;
+    private bool inFirstPerson = false;
+    private float smoothSpeed = 0.125f;
+    private Vector3 thirdPersonOffset = new Vector3(0, 3, -5);
+    private Quaternion thirdPersonRotation = Quaternion.Euler(20, 0, 0);
 
     // Variables for collision detection and doorways
-    [SerializeField] public LayerMask cameraTarget;  
-    public List<Doorway> doorways = new List<Doorway>();  
-    private Transform currentDoorThreshhold;  
+    [SerializeField] private LayerMask cameraTarget;
+    private Transform currentDoorThreshhold;
+    public List<Doorway> doorways = new List<Doorway>();
 
     private void Start()
     {
-        // Subscribe to collision events to toggle between first-person and third-person views
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += ChangeOffsetToFirstPerson;
         GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += ChangeOffsetToThirdPerson;
 
-        // Set the initial camera position to third-person
         SetCameraPositionToThirdPerson();
     }
 
     private void Update()
     {
-        // Update the camera position and perform sphere cast to for doorway lerp
         SetCameraPosition();
         SphereCastToPlayer();
     }
 
-    // Event handler to switch to first-person view
     private void ChangeOffsetToFirstPerson()
     {
-        // Start a Coroutine for a smooth transition to first-person view
         StartCoroutine(SmoothTransitionToFirstPerson());
     }
 
-    // Event handler to switch to third-person view
     private void ChangeOffsetToThirdPerson()
     {
-        // Start a Coroutine for a smooth transition to third-person view
         StartCoroutine(SmoothTransitionToThirdPerson());
     }
 
-    // Function to set the camera to third-person view
     private void SetCameraPositionToThirdPerson()
     {
         // Set the offset and rotation for third-person view
-        offset = thirdPersonOffset;
+        offsetFromTarget = thirdPersonOffset;
         inFirstPerson = false;
         transform.rotation = thirdPersonRotation;
     }
 
-    // Function to dynamically set the camera position
     private void SetCameraPosition()
     {
         // Set the camera position based on the target and the offset
-        transform.position = target.position + offset;
+        transform.position = target.position + offsetFromTarget;
 
         // Update rotation if in first-person view
         if (inFirstPerson)
@@ -80,16 +68,15 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    // Coroutine for smoothly transitioning the camera to a first-person view
     private IEnumerator SmoothTransitionToFirstPerson()
     {
         // Initialize variables
-        float duration = 1f; 
-        float elapsedTime = 0f; 
+        float duration = 1f;
+        float elapsedTime = 0f;
 
         // Starting rotation and position
         Quaternion startRotation = transform.rotation;
-        Vector3 startingOffset = offset;
+        Vector3 startingOffset = offsetFromTarget;
 
         // Ending rotation and position for first-person view
         Quaternion endRotation = Quaternion.Euler(0, target.transform.eulerAngles.y, 0);
@@ -99,43 +86,53 @@ public class CameraFollow : MonoBehaviour
         while (elapsedTime < duration)
         {
             float t = elapsedTime / duration;
-            offset = Vector3.Lerp(startingOffset, firstPersonOffset, t);
+            offsetFromTarget = Vector3.Lerp(startingOffset, firstPersonOffset, t);
             transform.rotation = Quaternion.Lerp(startRotation, endRotation, t);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         // Apply final first-person settings
-        offset = firstPersonOffset;
+        offsetFromTarget = firstPersonOffset;
         inFirstPerson = true;
     }
 
-    // Coroutine for smoothly transitioning the camera back to a third-person view
+    // Coroutine to smoothly transition the camera from first-person to third-person view
     private IEnumerator SmoothTransitionToThirdPerson()
     {
-        // Initialize variables
-        float duration = 1f; 
-        float elapsedTime = 0f; 
+        // Duration of the transition in seconds
+        float duration = 1f;
+        // Elapsed time since the transition started
+        float elapsedTime = 0f;
 
-        // Starting rotation and position
-        Vector3 startingOffset = offset;
+        // Store the starting camera offset and rotation before the transition
+        Vector3 startingOffset = offsetFromTarget;
         Quaternion startRotation = transform.rotation;
 
-        // Ending rotation and position for third-person view
+        // Define the desired ending camera offset and rotation for third-person view
         Vector3 endOffset = thirdPersonOffset;
         Quaternion endRotation = thirdPersonRotation;
 
-        // Loop to interpolate between the starting and ending positions and rotations
+        // Loop to perform the smooth transition
         while (elapsedTime < duration)
         {
+            // Calculate interpolation factor
             float t = elapsedTime / duration;
-            offset = Vector3.Lerp(startingOffset, endOffset, t);
+
+            // Interpolate camera offset and rotation based on the interpolation factor
+            offsetFromTarget = Vector3.Lerp(startingOffset, endOffset, t);
             transform.rotation = Quaternion.Lerp(startRotation, endRotation, t);
+
+            // Increment the elapsed time
             elapsedTime += Time.deltaTime;
+
+            // Yield execution to the next frame
             yield return null;
         }
-        // Apply final third-person settings
-        offset = endOffset;
+        // Apply the final offset and rotation for third-person view
+        offsetFromTarget = endOffset;
         transform.rotation = endRotation;
+
+        // Update the view mode to indicate we are now in third-person view
         inFirstPerson = false;
     }
 
@@ -153,14 +150,13 @@ public class CameraFollow : MonoBehaviour
 
         // Interpolate the camera height based on how close the player is to the doorway
         float desiredCameraHeight = Mathf.Lerp(thirdPersonOffset.y - 2f, thirdPersonOffset.y, t);
-        offset.y = desiredCameraHeight;
+        offsetFromTarget.y = desiredCameraHeight;
     }
 
 
     // Function to perform a sphere cast to detect any obstructions between the camera and the player
     private void SphereCastToPlayer()
     {
-        // Skip sphere casting if in first-person view
         if (inFirstPerson) { return; }
 
         // Initialize variables for sphere casting
@@ -172,10 +168,9 @@ public class CameraFollow : MonoBehaviour
         // For debugging: draw a line from the camera to the player
         Debug.DrawLine(transform.position, target.position, Color.red, 2.0f);
 
-        // Perform the sphere cast
+
         if (Physics.SphereCast(transform.position, radius, directionToPlayer, out hit, maxDistance, cameraTarget))
         {
-            // Check if the sphere cast hit a wall or door trigger
             if (hit.collider.CompareTag("CameraDoorTrigger"))
             {
                 // Find the corresponding doorway and update currentDoorThreshhold
@@ -186,7 +181,7 @@ public class CameraFollow : MonoBehaviour
         else
         {
             // If no obstructions were hit, adjust the camera's height back to the original offset
-            offset.y = Mathf.Lerp(offset.y, thirdPersonOffset.y, Time.deltaTime);
+            offsetFromTarget.y = Mathf.Lerp(offsetFromTarget.y, thirdPersonOffset.y, Time.deltaTime);
         }
     }
 }
@@ -216,7 +211,7 @@ public class CameraFollow : MonoBehaviour
 //    bool inFirstPerson = false;
 
 //    [Serialize] public LayerMask cameraTarget;
-//    public List<Doorway> doorways = new List<Doorway> ();
+//    public List<Doorway> doorways = new List<Doorway>();
 //    private Transform currentDoorThreshhold;
 
 //    private void Start()
@@ -249,7 +244,7 @@ public class CameraFollow : MonoBehaviour
 //        transform.rotation = Quaternion.Euler(20, 0, 0);
 //    }
 
-//    private void SetCameraPosition() 
+//    private void SetCameraPosition()
 //    {
 //        transform.position = target.position + offset;
 //        if (inFirstPerson)
@@ -279,7 +274,7 @@ public class CameraFollow : MonoBehaviour
 //            yield return null;
 //        }
 //        offset = firstPersonOffset;
-//        inFirstPerson = true;  
+//        inFirstPerson = true;
 //    }
 
 //    private IEnumerator SmoothTransitionToThirdPerson()
@@ -293,7 +288,7 @@ public class CameraFollow : MonoBehaviour
 
 
 //        Vector3 endOffset = thirdPersonOffset;
-//        Quaternion endRotation = thirdPersonRotation; 
+//        Quaternion endRotation = thirdPersonRotation;
 
 //        while (elapsedTime < duration)
 //        {
@@ -321,7 +316,7 @@ public class CameraFollow : MonoBehaviour
 
 //    private void SphereCastToPlayer()
 //    {
-//        if (inFirstPerson) { return ; }
+//        if (inFirstPerson) { return; }
 
 
 //        RaycastHit hit;

@@ -12,8 +12,6 @@ public class PlayerScript : MonoBehaviour
     Animator myAnimator;
     float xInput;
     float zInput;
-    float xVelocity;
-    float zVelocity;
 
     bool playerFrozen;
     public float moveSpeed;
@@ -38,29 +36,10 @@ public class PlayerScript : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        myAnimator = GetComponent<Animator>();
-        enemySpawningPlane = GameObject.FindGameObjectWithTag("EnemySpawningPlane");
-        difficultMovementPlane = GameObject.FindGameObjectWithTag("DifficultMovementPlane");
-        SetEnemySpawningPlaneOffset();
-        SetDifficultMovementPlaneOffset();
-
-        GameManager.instance.gameEvents.OnPlayerHasEnteredMainScene += FreezePlayer;
-        GameManager.instance.gameEvents.OnPreGameTimerFinished += UnFreezePlayer;
-
-        GameManager.instance.CollisionEvent.OnPlayerCollisionEnemy += MovePlayerToEnemySpawningPlaneOffset;
-        GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlane += RunDifficultMovementPlaneEntranceOperations;
-        GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlaneFall += MovePlayerToDifficultMovementPlaneOffset;
-        GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlaneExit += RunDifficultMovementPlaneExitOperations;
-        GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlane += RunEnemySpawningPlaneEntranceOperations;
-        GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlaneExit += RunEnemySpawningPlaneExitOperations;
-        GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += ActivateIsInMazeBool;
-        GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += DeactivateIsInMazeBool;
-
+        RunSetup();
+        RunAssignments();
         ActivateNormalMovement();
-
     }
-
 
     private void FixedUpdate()
     {
@@ -109,7 +88,6 @@ public class PlayerScript : MonoBehaviour
         moveDirection = new Vector3(-xInput, 0, -zInput);
     }
 
-
     private void SetDifficultPlayerMoveDirection()
     {
         float tempInput = xInput;
@@ -147,15 +125,12 @@ public class PlayerScript : MonoBehaviour
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
     }
 
-
-
     private void GetPlayerInputAxis()
     {
         xInput = Input.GetAxisRaw("Horizontal");
         zInput = Input.GetAxisRaw("Vertical");
         
         mouseX = Input.GetAxis("Mouse X");
-        
     }
 
     private void ControlPlayerAnimations()
@@ -166,7 +141,6 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
-
             myAnimator.SetBool("isWalking", false);
         }
     }
@@ -214,17 +188,6 @@ public class PlayerScript : MonoBehaviour
         difficultMovement = false;
     }
 
-
-    private void ShiftPlayerPositionForward()
-    {
-        transform.position += new Vector3(0, 10, 0);
-    }
-
-    private void ActivateInvertedMovement()
-    {
-        invertedMovement = true;    
-    }
-
     private void SetEnemySpawningPlaneOffset()
     {
         enemySpawningPlaneOffset = (enemySpawningPlane.transform.position - new Vector3(0, 0, 15));
@@ -244,29 +207,14 @@ public class PlayerScript : MonoBehaviour
     {
         transform.position = difficultMovementPlaneOffset;
     }
-
     private void ActivateIsInMazeBool()
     {
         isInMaze = true;
-
-        //move this to beginning of game
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void DeactivateIsInMazeBool()
     {
         isInMaze = false;
-    }
-
-    private void ActivateIsInMathsLevel()
-    {
-        isInMathsLevel = true;
-    }
-
-    private void DeactivateIsInMathsLevel()
-    {
-        isInMathsLevel = false;
     }
 
     private void FreezePlayer()
@@ -283,7 +231,29 @@ public class PlayerScript : MonoBehaviour
         playerFrozen = false;
     }
 
+    private  void RunSetup()
+    {
+        rb = GetComponent<Rigidbody>();
+        myAnimator = GetComponent<Animator>();
+        enemySpawningPlane = GameObject.FindGameObjectWithTag("EnemySpawningPlane");
+        difficultMovementPlane = GameObject.FindGameObjectWithTag("DifficultMovementPlane");
+        SetEnemySpawningPlaneOffset();
+        SetDifficultMovementPlaneOffset();
+    }
 
+    private void RunAssignments()
+    {
+        GameManager.instance.gameEvents.OnPlayerHasEnteredMainScene += FreezePlayer;
+        GameManager.instance.gameEvents.OnPreGameTimerFinished += UnFreezePlayer;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionEnemy += MovePlayerToEnemySpawningPlaneOffset;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlane += RunDifficultMovementPlaneEntranceOperations;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlaneFall += MovePlayerToDifficultMovementPlaneOffset;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlaneExit += RunDifficultMovementPlaneExitOperations;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlane += RunEnemySpawningPlaneEntranceOperations;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionEnemySpawningPlaneExit += RunEnemySpawningPlaneExitOperations;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionMazeEntrance += ActivateIsInMazeBool;
+        GameManager.instance.CollisionEvent.OnPlayerCollisionMazeExit += DeactivateIsInMazeBool;
+    }
 }
 
 

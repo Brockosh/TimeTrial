@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class DoorBarrier : Barrier
 {
     // Start is called before the first frame update
@@ -9,11 +5,5 @@ public class DoorBarrier : Barrier
     {
         base.Start();
         GameManager.instance.CollisionEvent.OnPlayerCollisionDoorBarrier += EnableBarrier;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

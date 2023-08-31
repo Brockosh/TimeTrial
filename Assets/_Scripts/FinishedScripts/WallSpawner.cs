@@ -53,7 +53,6 @@ public class WallSpawner : MonoBehaviour
         return spawnPosition;
     }
 
-
     private Vector3 GenerateRandomPosition()
     {
         return planeObject.transform.position + GetRandomOffset();

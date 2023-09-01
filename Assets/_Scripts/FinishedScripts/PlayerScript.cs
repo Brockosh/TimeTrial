@@ -7,6 +7,10 @@ public class PlayerScript : MonoBehaviour
     float xInput;
     float zInput;
 
+    [SerializeField] private Thumbstick rightStick;
+    [SerializeField] private Thumbstick leftStick;
+
+
     bool playerFrozen;
     public float moveSpeed;
     private Vector3 moveDirection;
@@ -121,10 +125,63 @@ public class PlayerScript : MonoBehaviour
 
     private void GetPlayerInputAxis()
     {
-        xInput = Input.GetAxisRaw("Horizontal");
-        zInput = Input.GetAxisRaw("Vertical");
+#if UNITY_IOS
+
+        xInput = rightStick.xAxis;
+        zInput = rightStick.yAxis;
         
-        mouseX = Input.GetAxis("Mouse X");
+        if (xInput > 0)
+        {
+            xInput = 1;
+        }
+        if (xInput < 0)
+        {
+            xInput = -1;
+        }
+
+        if (zInput > 0)
+        {
+            zInput = 1;
+        }
+        if (zInput < 0)
+        {
+            zInput = -1;
+        }
+
+        mouseX = leftStick.xAxis;
+
+
+
+#else 
+        xInput = rightStick.xAxis;
+        zInput = rightStick.yAxis;
+
+        //if (xInput > 0)
+        //{
+        //    xInput = 1;
+        //}
+        //if (xInput < 0)
+        //{
+        //    xInput = -1;
+        //}
+
+        //if (zInput > 0)
+        //{
+        //    zInput = 1;
+        //}
+        //if (zInput < 0)
+        //{
+        //    zInput = -1;
+        //}
+
+        mouseX = leftStick.xAxis * 0.3f;
+  
+
+        //xInput = Input.GetAxisRaw("Horizontal");
+        //zInput = Input.GetAxisRaw("Vertical");
+        
+        //mouseX = Input.GetAxis("Mouse X");
+#endif
     }
 
     private void ControlPlayerAnimations()

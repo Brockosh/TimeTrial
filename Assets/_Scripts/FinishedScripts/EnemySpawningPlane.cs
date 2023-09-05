@@ -20,7 +20,6 @@ public class EnemySpawningPlane : MonoBehaviour
 
     private void DisableBoxCollider()
     {
-        Debug.Log("DisableBoxCollider called");
         myBoxCollider.enabled = false;
     }
 }

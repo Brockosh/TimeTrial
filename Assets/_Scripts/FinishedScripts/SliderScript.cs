@@ -9,7 +9,6 @@ public class SliderScript : MonoBehaviour
 
     void Start()
     {
-
         slider.onValueChanged.AddListener((v) =>
         {
             sliderText.text = v.ToString();

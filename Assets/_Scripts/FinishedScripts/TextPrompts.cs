@@ -53,7 +53,6 @@ public class TextPrompts : MonoBehaviour
     public TextPrompt moveAroundTheBrickWalls;
     public TextPrompt mazeColourIndicateYourProgress;
     public TextPrompt finished;
-    public TextPrompt answerFasterThanRobot;
 
     void Start()
     {
@@ -91,7 +90,6 @@ public class TextPrompts : MonoBehaviour
         weirdMovement.Deactivate();
         moveAroundTheBrickWalls.Deactivate();
         finished.Deactivate();
-        answerFasterThanRobot.Deactivate();
         mazeColourIndicateYourProgress.Deactivate();
     }
 

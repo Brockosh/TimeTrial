@@ -16,7 +16,6 @@ public class DoorSelector : MonoBehaviour
         lock (RandomNumberGenerator) 
         {
             int result = RandomNumberGenerator.Next(min, max);
-            Debug.Log(result);
             return result;
         }
     }

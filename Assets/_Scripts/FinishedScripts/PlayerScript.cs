@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -7,6 +8,9 @@ public class PlayerScript : MonoBehaviour
     float xInput;
     float zInput;
 
+
+    [SerializeField] private GameObject rightStickHolder;
+    [SerializeField] private GameObject leftStickHolder;
     [SerializeField] private Thumbstick rightStick;
     [SerializeField] private Thumbstick leftStick;
 
@@ -34,15 +38,25 @@ public class PlayerScript : MonoBehaviour
 
     private void Start()
     {
+        
         RunSetup();
+        SetUpForInput();
         RunAssignments();
         ActivateNormalMovement();
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            mouseRotationSpeed = 250;
+        }
     }
 
     private void FixedUpdate()
     {
         BasicPlayerMovement();
         ControlPlayerAnimations();
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            leftStickHolder.gameObject.SetActive(isInMaze);
+        }
     }
 
     private void BasicPlayerMovement()
@@ -125,63 +139,35 @@ public class PlayerScript : MonoBehaviour
 
     private void GetPlayerInputAxis()
     {
-#if UNITY_IOS
-
-        xInput = rightStick.xAxis;
-        zInput = rightStick.yAxis;
-        
-        if (xInput > 0)
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            xInput = 1;
+            xInput = rightStick.xAxis;
+            zInput = rightStick.yAxis;
+
+
+            mouseX = leftStick.xAxis;
         }
-        if (xInput < 0)
+        else
         {
-            xInput = -1;
-        }
+            xInput = Input.GetAxisRaw("Horizontal");
+            zInput = Input.GetAxisRaw("Vertical");
 
-        if (zInput > 0)
+            mouseX = Input.GetAxis("Mouse X");
+        }
+    }
+
+    private void SetUpForInput()
+    {
+        RuntimePlatform platform = Application.platform;
+        if (platform == RuntimePlatform.IPhonePlayer)
         {
-            zInput = 1;
+            leftStickHolder.gameObject.SetActive(false);
         }
-        if (zInput < 0)
+        else
         {
-            zInput = -1;
+            leftStickHolder.gameObject.SetActive(false);
+            rightStickHolder.gameObject.SetActive(false);
         }
-
-        mouseX = leftStick.xAxis;
-
-
-
-#else 
-        xInput = rightStick.xAxis;
-        zInput = rightStick.yAxis;
-
-        //if (xInput > 0)
-        //{
-        //    xInput = 1;
-        //}
-        //if (xInput < 0)
-        //{
-        //    xInput = -1;
-        //}
-
-        //if (zInput > 0)
-        //{
-        //    zInput = 1;
-        //}
-        //if (zInput < 0)
-        //{
-        //    zInput = -1;
-        //}
-
-        mouseX = leftStick.xAxis * 0.3f;
-  
-
-        //xInput = Input.GetAxisRaw("Horizontal");
-        //zInput = Input.GetAxisRaw("Vertical");
-        
-        //mouseX = Input.GetAxis("Mouse X");
-#endif
     }
 
     private void ControlPlayerAnimations()

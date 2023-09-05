@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,8 +48,8 @@ public class EnemySpawner : MonoBehaviour
     // Generate a random position within the defined bounds
     private Vector3 GenerateRandomPosition()
     {
-        float x = Random.Range(minDistanceX, maxDistanceX);
-        float z = Random.Range(minDistanceZ, maxDistanceZ);
+        float x = UnityEngine.Random.Range(minDistanceX, maxDistanceX);
+        float z = UnityEngine.Random.Range(minDistanceZ, maxDistanceZ);
         Vector3 position = transform.position + new Vector3(x, 0, z);
         return position;
     }
@@ -71,7 +72,21 @@ public class EnemySpawner : MonoBehaviour
     {
         foreach (Vector3 position in positionsForEnemiesToSpawnIn)
         {
-            Instantiate(enemyPrefab, position, Quaternion.identity);
+            try
+            {
+                if (enemyPrefab != null)
+                {
+                    Instantiate(enemyPrefab, position, Quaternion.identity);
+                }
+                else
+                {
+                    Debug.LogWarning("enemyPrefab is not set in EnemySpawner.");
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Failed to spawn enemy at position {position}. Error: {e.Message}");
+            }
         }
     }
 

@@ -4,8 +4,8 @@ public class CursorController : MonoBehaviour
 {
     void Start()
     {
-       //HideAndLockCursor();
-       //GameManager.instance.CollisionEvent.OnPlayerCollisionFinishLine += UnhideAndUnlockCursor;
+        HideAndLockCursor();
+        GameManager.instance.CollisionEvent.OnPlayerCollisionFinishLine += UnhideAndUnlockCursor;
     }
 
     private void HideAndLockCursor()

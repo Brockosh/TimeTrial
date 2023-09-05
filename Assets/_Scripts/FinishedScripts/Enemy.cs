@@ -27,8 +27,13 @@ public class Enemy : MonoBehaviour
 
     private void RotateEnemyTowardsPlayer()
     {
+        // Calculate the direction from the enemy to the player.
         Vector3 directionToPlayer = player.transform.position - transform.position;
+
+        // Create a rotation that looks along the direction to the player.
         Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+
+        // Smoothly interpolate (lerp) the enemy's current rotation towards the target rotation based on time.
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
     }
 

@@ -779,8 +779,8 @@ Transform:
   - {fileID: 809906901}
   - {fileID: 896172609}
   - {fileID: 246830866}
-  - {fileID: 795833797}
   - {fileID: 1321120367}
+  - {fileID: 795833797}
   - {fileID: 162888296}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -5744,7 +5744,7 @@ Transform:
   - {fileID: 1434510461}
   - {fileID: 926568739}
   m_Father: {fileID: 193555656}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &799081436
 PrefabInstance:
@@ -6932,7 +6932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3663911659243722930, guid: 2a34b7f1566838f42ad9f35a5646d3e9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.93
+      value: 105.6
       objectReference: {fileID: 0}
     - target: {fileID: 3663911659243722930, guid: 2a34b7f1566838f42ad9f35a5646d3e9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14884,7 +14884,7 @@ Transform:
   - {fileID: 38789726}
   - {fileID: 715038792}
   m_Father: {fileID: 193555656}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1322023893 stripped
 Transform:
@@ -15246,7 +15246,7 @@ MonoBehaviour:
   minDistanceZ: -5
   maxDistanceZ: 5
   minDistanceBetweenEnemies: 2
-  amountOfEnemies: 3
+  amountOfEnemies: 5
 --- !u!4 &1397479445
 Transform:
   m_ObjectHideFlags: 0

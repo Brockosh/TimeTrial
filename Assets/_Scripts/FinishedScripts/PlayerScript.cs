@@ -43,7 +43,7 @@ public class PlayerScript : MonoBehaviour
         SetUpForInput();
         RunAssignments();
         ActivateNormalMovement();
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        if (Application.platform == RuntimePlatform.Android)
         {
             mouseRotationSpeed = 250;
         }
@@ -53,9 +53,9 @@ public class PlayerScript : MonoBehaviour
     {
         BasicPlayerMovement();
         ControlPlayerAnimations();
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        if (Application.platform == RuntimePlatform.Android)
         {
-            leftStickHolder.gameObject.SetActive(isInMaze);
+            rightStickHolder.gameObject.SetActive(isInMaze);
         }
     }
 
@@ -139,13 +139,13 @@ public class PlayerScript : MonoBehaviour
 
     private void GetPlayerInputAxis()
     {
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        if (Application.platform == RuntimePlatform.Android)
         {
-            xInput = rightStick.xAxis;
-            zInput = rightStick.yAxis;
+            xInput = leftStick.xAxis;
+            zInput = leftStick.yAxis;
 
 
-            mouseX = leftStick.xAxis;
+            mouseX = rightStick.xAxis;
         }
         else
         {
@@ -159,14 +159,14 @@ public class PlayerScript : MonoBehaviour
     private void SetUpForInput()
     {
         RuntimePlatform platform = Application.platform;
-        if (platform == RuntimePlatform.IPhonePlayer)
+        if (platform == RuntimePlatform.Android)
         {
-            leftStickHolder.gameObject.SetActive(false);
+            rightStickHolder.gameObject.SetActive(false);
         }
         else
         {
-            leftStickHolder.gameObject.SetActive(false);
             rightStickHolder.gameObject.SetActive(false);
+            leftStickHolder.gameObject.SetActive(false);
         }
     }
 

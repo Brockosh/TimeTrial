@@ -51,6 +51,7 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log("Target Frame Rate: " + Application.targetFrameRate);
         BasicPlayerMovement();
         ControlPlayerAnimations();
         if (Application.platform == RuntimePlatform.Android)
@@ -61,7 +62,7 @@ public class PlayerScript : MonoBehaviour
 
     private void BasicPlayerMovement()
     {
-        if (!isInMathsLevel && !playerFrozen)
+        if (!playerFrozen)
         {
             GetPlayerInputAxis();
             if (normalMovement)
@@ -161,7 +162,9 @@ public class PlayerScript : MonoBehaviour
         RuntimePlatform platform = Application.platform;
         if (platform == RuntimePlatform.Android)
         {
+            GameManager.instance.gameEvents.OnPreGameTimerFinished += SetLeftStickActiveOnGameStart;
             rightStickHolder.gameObject.SetActive(false);
+            leftStickHolder.gameObject.SetActive(false);
         }
         else
         {
@@ -247,6 +250,11 @@ public class PlayerScript : MonoBehaviour
     private void ActivateIsInMazeBool()
     {
         isInMaze = true;
+    }
+
+    private void SetLeftStickActiveOnGameStart()
+    {
+        leftStickHolder.SetActive(true);
     }
 
     private void DeactivateIsInMazeBool()

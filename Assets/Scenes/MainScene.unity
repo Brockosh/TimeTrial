@@ -7007,7 +7007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3663911659243722930, guid: 2a34b7f1566838f42ad9f35a5646d3e9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.6
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 3663911659243722930, guid: 2a34b7f1566838f42ad9f35a5646d3e9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7063,7 +7063,7 @@ PrefabInstance:
       objectReference: {fileID: 989328330}
     - target: {fileID: 3663911659243722932, guid: 2a34b7f1566838f42ad9f35a5646d3e9, type: 3}
       propertyPath: mouseRotationSpeed
-      value: 700
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3663911659243722942, guid: 2a34b7f1566838f42ad9f35a5646d3e9, type: 3}
       propertyPath: m_Name

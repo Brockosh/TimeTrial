@@ -38,7 +38,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Start()
     {
-        
+        FreezePlayer();
         RunSetup();
         SetUpForInput();
         RunAssignments();
@@ -51,7 +51,6 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log("Target Frame Rate: " + Application.targetFrameRate);
         BasicPlayerMovement();
         ControlPlayerAnimations();
         if (Application.platform == RuntimePlatform.Android)
@@ -288,7 +287,7 @@ public class PlayerScript : MonoBehaviour
 
     private void RunAssignments()
     {
-        GameManager.instance.gameEvents.OnPlayerHasEnteredMainScene += FreezePlayer;
+        //GameManager.instance.gameEvents.OnPlayerHasEnteredMainScene += FreezePlayer;
         GameManager.instance.gameEvents.OnPreGameTimerFinished += UnFreezePlayer;
         GameManager.instance.CollisionEvent.OnPlayerCollisionEnemy += MovePlayerToEnemySpawningPlaneOffset;
         GameManager.instance.CollisionEvent.OnPlayerCollisionDifficultMovementPlane += RunDifficultMovementPlaneEntranceOperations;

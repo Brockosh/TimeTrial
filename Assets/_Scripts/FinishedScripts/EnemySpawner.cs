@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Class to control spawning of enemies and respective positions in obstacle 4.
+/// </summary>
 public class EnemySpawner : MonoBehaviour
 {
     // Serialized fields for prefab and spawn settings

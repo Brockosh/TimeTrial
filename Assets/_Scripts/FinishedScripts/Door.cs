@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// Class to control functionality of doors in obstacle 1.
+/// </summary>
 public class Door : MonoBehaviour
 {
     public bool openable;

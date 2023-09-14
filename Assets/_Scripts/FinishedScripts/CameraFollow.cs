@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Class for all the functionality of main camera, including lerps and raycasts.
+/// </summary>
 public class CameraFollow : MonoBehaviour
 {
     // Serializable class to hold door-related information

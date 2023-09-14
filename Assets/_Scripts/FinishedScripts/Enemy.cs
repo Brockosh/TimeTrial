@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// Class to control functionality of enemy in obstacle 4.
+/// </summary>
 public class Enemy : MonoBehaviour
 {
     private GameObject player;

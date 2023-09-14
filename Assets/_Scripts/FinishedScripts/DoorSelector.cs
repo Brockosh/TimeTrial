@@ -1,6 +1,8 @@
 using UnityEngine;
 using Random = System.Random;
-
+/// <summary>
+/// Class to control spawning of doors.
+/// </summary>
 public class DoorSelector : MonoBehaviour
 {
     [SerializeField] private Door[] doors;

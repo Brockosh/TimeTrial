@@ -1,6 +1,8 @@
+/// <summary>
+/// Inherited from Barrier, enables door barrier when player colliders with set collider.
+/// </summary>
 public class DoorBarrier : Barrier
 {
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();

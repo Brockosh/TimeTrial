@@ -1,40 +1,35 @@
-
 using UnityEngine;
-
+/// <summary>
+/// Class to control functionality and movement inputs of player.
+/// </summary>
 public class PlayerScript : MonoBehaviour
 {
-    Rigidbody rb;
     Animator myAnimator;
     float xInput;
     float zInput;
-
 
     [SerializeField] private GameObject rightStickHolder;
     [SerializeField] private GameObject leftStickHolder;
     [SerializeField] private Thumbstick rightStick;
     [SerializeField] private Thumbstick leftStick;
 
-
-    bool playerFrozen;
     public float moveSpeed;
-    private Vector3 moveDirection;
     public float jumpForce = 10f;
     public float rotationSpeed = 10f;
     public float mouseRotationSpeed = 10f;
+    private Vector3 moveDirection;
 
+    private bool playerFrozen;
     private bool normalMovement;
     private bool difficultMovement;
     private bool invertedMovement;
-
     private bool isInMaze;
-    private bool isInMathsLevel;
     private float mouseX;
 
     private GameObject enemySpawningPlane;
     private GameObject difficultMovementPlane;
     private Vector3 enemySpawningPlaneOffset;
     private Vector3 difficultMovementPlaneOffset;
-
 
     private void Start()
     {
@@ -277,7 +272,6 @@ public class PlayerScript : MonoBehaviour
 
     private  void RunSetup()
     {
-        rb = GetComponent<Rigidbody>();
         myAnimator = GetComponent<Animator>();
         enemySpawningPlane = GameObject.FindGameObjectWithTag("EnemySpawningPlane");
         difficultMovementPlane = GameObject.FindGameObjectWithTag("DifficultMovementPlane");

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Class to spawn walls in spaced out positions in obstacle 2.
+/// </summary>
 public class WallSpawner : MonoBehaviour
 {
     public GameObject planeObject;

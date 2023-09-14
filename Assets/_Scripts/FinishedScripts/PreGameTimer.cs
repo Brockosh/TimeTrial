@@ -2,7 +2,9 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
-
+/// <summary>
+/// Class to control pre game countdown and associated audio.
+/// </summary>
 public class PreGameTimer : MonoBehaviour
 {
     private AudioSource audioSource;

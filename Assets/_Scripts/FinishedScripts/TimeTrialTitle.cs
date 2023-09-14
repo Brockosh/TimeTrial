@@ -1,6 +1,8 @@
 using UnityEngine;
 using DG.Tweening;
-
+/// <summary>
+/// Class to control scaling of game title on main menu start.
+/// </summary>
 public class TimeTrialTitle : MonoBehaviour
 {
     private Vector3 startSize = new Vector3 (0, 0, 0); 

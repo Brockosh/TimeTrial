@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
-
+/// <summary>
+/// Class to control game timer functionality and its format.
+/// </summary>
 public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI gameTimer;

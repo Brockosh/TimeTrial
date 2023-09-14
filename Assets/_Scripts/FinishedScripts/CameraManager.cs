@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// Class to control switching between cameras in main game scene.
+/// </summary>
 public class CameraManager : MonoBehaviour
 {
     public Camera IntroCamera;

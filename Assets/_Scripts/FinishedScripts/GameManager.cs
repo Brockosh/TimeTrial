@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// Class to call events and monitor for player quit if escape key is pressed.
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;

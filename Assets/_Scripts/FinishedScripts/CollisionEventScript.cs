@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
-
+/// <summary>
+/// Class that contains all events related to collisions in game, to be utilised by the GameManager,
+/// </summary>
 public class CollisionEventScript : MonoBehaviour
 {
     public event Action OnPlayerCollisionStartLine;

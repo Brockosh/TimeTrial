@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+/// <summary>
+/// Class to control fucntionality for the main menu.
+/// </summary>
 public class MainMenu : MonoBehaviour
 {
     private void Start()

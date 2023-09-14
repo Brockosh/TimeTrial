@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// Class to control functionality of return to main menu button.
+/// </summary>
 public class MainMenuButton : MonoBehaviour
 {
     void Start()

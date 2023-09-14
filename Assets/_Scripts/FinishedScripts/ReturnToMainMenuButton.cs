@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+/// <summary>
+/// Class to control return to main menu button appearing when player finishes.
+/// </summary>
 public class ReturnToMainMenuButton : MonoBehaviour
 {
     void Start()
@@ -11,7 +13,7 @@ public class ReturnToMainMenuButton : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(LoadMainMenu);
     }
 
-    public void LoadMainMenu()
+    private void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
     }

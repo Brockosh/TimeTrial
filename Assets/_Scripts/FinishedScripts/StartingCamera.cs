@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
-
+/// <summary>
+/// Class to set functionality of camera that lerps at start of game scene.
+/// </summary>
 public class StartingCamera : MonoBehaviour
 {
     private Vector3 startingPosition = new Vector3(0, 15.3999996f, 160.699997f);

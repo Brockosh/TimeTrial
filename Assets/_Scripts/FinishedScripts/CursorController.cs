@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// Class to control cursor whether cursor is visible or not in game.
+/// </summary>
 public class CursorController : MonoBehaviour
 {
     void Start()

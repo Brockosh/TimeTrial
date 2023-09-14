@@ -1,7 +1,9 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// Class to control functionality of audio slider in settings menu.
+/// </summary>
 public class SliderScript : MonoBehaviour
 {
     [SerializeField] private Slider slider;

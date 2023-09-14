@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// Class to control obstacle 4 functionality and collider enable/disable.
+/// </summary>
 public class EnemySpawningPlane : MonoBehaviour
 {
     BoxCollider myBoxCollider;

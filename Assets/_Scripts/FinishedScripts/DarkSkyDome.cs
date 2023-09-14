@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// Class to control sky dome that is enabled when the player hits obstacle 4.
+/// </summary>
 public class DarkSkyDome : MonoBehaviour
 {
     private float y = 0.0f;

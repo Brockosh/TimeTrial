@@ -1,6 +1,8 @@
 using DG.Tweening;
 using UnityEngine;
-
+/// <summary>
+/// Class to control scaling of main menu buttons on game start.
+/// </summary>
 public class MainMenuButtons : MonoBehaviour
 {
     private Vector3 startSize = new Vector3(0, 0, 0);

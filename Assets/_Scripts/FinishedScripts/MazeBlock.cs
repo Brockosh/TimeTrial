@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
-
+/// <summary>
+/// Class to control colour changes in maze blocks dependent on player positions.
+/// </summary>
 public class MazeBlock : MonoBehaviour
 {
     public Material myMaterial; 

@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// Parent class for various game barriers.
+/// </summary>
 public class Barrier : MonoBehaviour
 {
     protected virtual void Start()

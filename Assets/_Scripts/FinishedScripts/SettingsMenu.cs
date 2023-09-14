@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// Class to control enable and disable of settings menu.
+/// </summary>
 public class SettingsMenu : MonoBehaviour
 {
     void Start()

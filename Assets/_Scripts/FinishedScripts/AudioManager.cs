@@ -1,14 +1,14 @@
 using UnityEngine;
-
+/// <summary>
+/// Class to manage audio for entire game, uses AudioListener for volume control.
+/// </summary>
 public class AudioManager : MonoBehaviour
 {
-    // Serialized private float for volume setting
-    [SerializeField] private float volume;
 
-    // Singleton instance of AudioManager
+    [SerializeField] private float volume;
     public static AudioManager instance;
 
-    // Awake is called when the script instance is being loaded
+
     private void Awake()
     {
         // Singleton pattern: If no other AudioManager instance exists, use this one and preserve it between scene changes
@@ -23,14 +23,12 @@ public class AudioManager : MonoBehaviour
         AudioListener.volume = 0.5f;
     }
 
-    // Public method to set the volume
     public void SetVolume(float vol)
     {
         // Set global audio volume
         AudioListener.volume = vol;
     }
 
-    // Public method to get the volume
     public float GetVolume()
     {
         // Return the current volume setting
